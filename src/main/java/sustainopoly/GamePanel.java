@@ -1,4 +1,4 @@
-package Sustainopoly;
+package game;
 
 import javax.swing.*;
 import javax.swing.Timer;
@@ -25,17 +25,14 @@ public class GamePanel extends JPanel implements ActionListener {
     Player Player1 = new Player(GameData.play1,910,585,40,40, 195, 585);
     Player Player2 = new Player(GameData.play2,910,615,40,40, 225, 615);
 
-    // 时间
     Date start = new Date();
     long period = 0;
 
-
-    private static List<Icon> photo = new ArrayList<Icon>();   // 骰子图片
-
+    private static List<Icon> photo = new ArrayList<Icon>();
     Thread t1,t2;
 
     // Timer 1000ms = 1s
-    Timer timer = new Timer(100, this);  // 100 毫秒 执行一次
+    Timer timer = new Timer(100, this);
     private ActionEvent ae;
 
 
@@ -75,7 +72,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         drawTime(g);
 
-        super.paintChildren(g);// 保持按钮不闪
+        super.paintChildren(g);
     }
 
 
@@ -87,20 +84,16 @@ public class GamePanel extends JPanel implements ActionListener {
         if(p.y == p.maxpy) {
             int squ1 = (p.x - minpx) / step;
             if((squ1 - point) < 0) {
-                //剩余格子数比点数小，需要向上走
                 p.x = minpx;
                 if((point - squ1 - 5) >= 0) {
-                    //向上走的格子数也不够，需要右转
                     p.x += (point - squ1 - 5) * step;
                     p.y = p.minpy;
                 }
                 else {
-                    //向上走的格子数够
                     p.y -= (point - squ1) * step;
                 }
             }
             if((squ1 - point) >= 0 ) {
-                //剩余格子比点数大，不需要转弯
                 p.x -= point * step;
             }
             point = 0;
@@ -109,20 +102,16 @@ public class GamePanel extends JPanel implements ActionListener {
         if(p.x == minpx && p.y < p.maxpy) {
             int squ2 = (p.y - p.minpy) / step;
             if((squ2 - point) < 0) {
-                //剩余格子比较小，需要右转
                 p.y = p.minpy;
                 if((point - squ2 - 10) >= 0) {
-                    //格子还是不够，还得转弯
                     p.y += (point - squ2 - 10) * step;
                     p.x = maxpx;
                 }
                 else {
-                    //格子够，不需要转弯
                     p.x += (point - squ2) * step;
                 }
             }
             if((squ2 - point) >= 0) {
-                //完全不需要转弯
                 p.y -= point * step;
             }
             point = 0;
@@ -131,20 +120,16 @@ public class GamePanel extends JPanel implements ActionListener {
         if(p.y == p.minpy) {
             int squ1 = (maxpx - p.x) / step;
             if((squ1 - point) < 0) {
-                //剩余格子数比点数小，需要向下走
                 p.x = maxpx;
                 if((point - squ1 - 5) >= 0) {
-                    //向上走的格子数也不够，需要左转
                     p.x -= (point - squ1 - 5) * step;
                     p.y = p.maxpy;
                 }
                 else {
-                    //向下走的格子数够
                     p.y += (point - squ1) * step;
                 }
             }
             if((squ1 - point) >= 0 ) {
-                //剩余格子比点数大，不需要转弯
                 p.x += point * step;
             }
             point = 0;
@@ -153,20 +138,16 @@ public class GamePanel extends JPanel implements ActionListener {
         if(p.x == maxpx && p.y < p.maxpy) {
             int squ2 = (p.maxpy - p.y ) / step;
             if((squ2 - point) < 0) {
-                //剩余格子比较小，需要左转
                 p.y = p.maxpy;
                 if((point - squ2 - 10) >= 0) {
-                    //格子还是不够，上转
                     p.y -= (point - squ2 - 10) * step;
                     p.x = minpx;
                 }
                 else {
-                    //格子够，不需要转弯
                     p.x -= (point - squ2) * step;
                 }
             }
             if((squ2 - point) >= 0) {
-                //完全不需要转弯
                 p.y += point * step;
             }
 //            point = 0;
@@ -177,7 +158,7 @@ public class GamePanel extends JPanel implements ActionListener {
      * @param p is Player
      * Call the Events Class
      */
-    //事件
+    //
     public void events(Player p, int flat) {
         if(flat == 1){
             Events event1 = new Events();
@@ -214,14 +195,13 @@ public class GamePanel extends JPanel implements ActionListener {
      * Show time and Refugees
      * @param g paint
      */
-    // 画时间的函数
     public void drawTime(Graphics g) {
         Color c = g.getColor();
-        Font f = g.getFont(); // 字体
+        Font f = g.getFont();
 
         g.setFont(new Font("Arial", Font.BOLD, 25));
         int refugees = 2000;
-        period = (System.currentTimeMillis() - start.getTime()) / 1000;  // 都是long类型值
+        period = (System.currentTimeMillis() - start.getTime()) / 1000;
         g.drawString("Game Time: " + period, 1100, 500);
         g.drawString("Refugees: " + refugees,1100,550);
         g.setFont(f);
@@ -232,11 +212,10 @@ public class GamePanel extends JPanel implements ActionListener {
      * Show Player's information
      * @param g paint
      */
-    // 展示玩家信息
     public void playerInfor(Graphics g) {
 
         Color c = g.getColor();
-        Font f = g.getFont(); // 字体
+        Font f = g.getFont();
 
         g.setFont(new Font("Arial", Font.BOLD, 15));
 
@@ -270,7 +249,7 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         }).start();
 
-        repaint(); // 重画页面
+        repaint();
         timer.start();
 
     }
@@ -282,10 +261,10 @@ public class GamePanel extends JPanel implements ActionListener {
         @Override
         public void run() {
             while (true) {
-                repaint();  // repaint 来自 Frame 就是 内部类调用外部类的方法 外部类继承 Frame 就有这个方法  重画窗口
+                repaint();
 
-                try {            // 1 s = 1000 ms  1000/50 = 20 , 1 s 20 次
-                    Thread.sleep(50); // 会报错 surround and try 就可以捕抓异常
+                try {            // 1 s = 1000 ms  1000/50 = 20 , 1 s 20 锟斤拷
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -301,7 +280,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public void update(Graphics g) {
         if (offScreenImage == null)
-            offScreenImage = this.createImage(1400, 800); // 这个是游戏窗口的宽度和高度 正常可以把常量放在一个类里面
+            offScreenImage = this.createImage(1400, 800);
 
         Graphics gOff = offScreenImage.getGraphics();
         paint(gOff);
@@ -339,9 +318,9 @@ public class GamePanel extends JPanel implements ActionListener {
          Dice myactionListener = new Dice();
         jButton.addActionListener(myactionListener);
 
-        this.setFocusable(true); // 获得焦点事件
+        this.setFocusable(true);
 
-        new PaintThread().start(); // 启动重画窗口的线程
+        new PaintThread().start();
 
     }
 

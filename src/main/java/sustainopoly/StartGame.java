@@ -1,7 +1,6 @@
-package Sustainopoly;
+package game;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  *  Initialize Frame
@@ -10,7 +9,7 @@ public class StartGame extends JFrame{
 
     public void init(){
 
-        JFrame frame = new JFrame("Sustainopoly");
+        JFrame frame = new JFrame("game");
 
         frame.setBounds(110,30,1332,772);
 

@@ -1,4 +1,4 @@
-package Sustainopoly;
+package game;
 
 import java.awt.*;
 
