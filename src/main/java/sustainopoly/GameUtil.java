@@ -1,4 +1,4 @@
-package game;
+package sustainopoly;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -21,10 +21,5 @@ public class GameUtil {
         }
 
          return img;
-    }
-
-    public static void main(String[] args) {
-       Image img = GameUtil.getImage("src/main/java/images/Dicebutton.jpg");
-        System.out.println(img);
     }
 }

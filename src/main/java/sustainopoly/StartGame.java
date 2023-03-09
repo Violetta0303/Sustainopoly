@@ -1,32 +1,64 @@
-package game;
+package sustainopoly;
+
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import javazoom.jl.decoder.JavaLayerException;
+import playersInformation.FrameConfig;
+import videoplayer.VideoPlayerMain;
+import videoplayer.VideoPlayerWindow;
 
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.util.Locale;
+
+import static sustainopoly.GameData.Player1;
+import static sustainopoly.GamePanel.event;
+import static sustainopoly.GamePanel.period;
 
 /**
- *  Initialize Frame
+ * Initialize Frame
  */
-public class StartGame extends JFrame{
+public class StartGame extends JFrame {
 
-    public void init(){
+    static JFrame frame = new JFrame("Sustainopoly");
+    static GamePanel gamePanel = new GamePanel();
 
-        JFrame frame = new JFrame("game");
+    public void init() {
+        Locale.setDefault(Locale.ENGLISH);
 
-        frame.setBounds(110,30,1332,772);
+        try {
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize Laf");
+        }
+
+        frame.setBounds(100, 10, 1350, 810);
+
+        frame.setLocationRelativeTo(null);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
-        GamePanel gamePanel = new GamePanel();
         gamePanel.setLayout(null);
+
+        //Set MenuBar
+        frame.setJMenuBar(new MenuBar());
+
+        //Set Game's LOGO
+        frame.setIconImage(new ImageIcon("src/main/java/images/Logo.png").getImage());
 
         frame.getContentPane().add(gamePanel);
 
         frame.setVisible(true);
 
-    }
 
-    public static void main(String[] args) {
-        StartGame startGame = new StartGame();
-        startGame.init();
+        if (event.flag_MentalHealthCentre == 0 && event.flag_FoodBank == 0 && event.flag_ActivityCentre == 0
+                && event.flag_Market == 0 && event.flag_SocialMedia == 0 && event.flag_Radio == 0) {
+            EndGamePanelUtil.init();
+            frame.setVisible(false);
+        }
+//        else if (gamePanel.period >= 1200) {
+//            EndGamePanelUtil.init();
+//            frame.setVisible(false);
+//        }
     }
 }

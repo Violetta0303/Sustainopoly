@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import static javax.swing.JOptionPane.*;
+import static sustainopoly.StartGame.gamePanel;
 
 /**
  * MenuBar
@@ -23,15 +24,22 @@ public class MenuBar extends JMenuBar implements ActionListener {
     private JMenuItem saveMenuItem;
     private JMenuItem exitMenuItem;
     private JMenuItem aboutMenuItem;
+    private JCheckBoxMenuItem musicMenuItem;
+    private PlayMusicUtil playMusicUtil;
+
 
     public MenuBar() {
         this.add(this.createFileMenu());
+        this.add(this.createSettingMenu());
         this.add(this.createHelpMenu());
+        // Background Music
+        this.musicMenuItem.setState(gamePanel.data.isMusic);
+        this.onMusicChange();
     }
 
     private JMenu createFileMenu() {
         JMenu menu = new Menu("File", this);
-        // 设置快速访问符
+        // Set Shortcuts
         menu.setMnemonic(KeyEvent.VK_F);
         this.openMenuItem = new JMenuItem("Load", KeyEvent.VK_L);
         this.openMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
@@ -47,6 +55,15 @@ public class MenuBar extends JMenuBar implements ActionListener {
         return menu;
     }
 
+    public JMenu createSettingMenu() {
+        JMenu menu = new Menu("Setting", this);
+        menu.setMnemonic(KeyEvent.VK_S);
+        this.musicMenuItem = new JCheckBoxMenuItem("Background Music");
+        this.musicMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK));
+        menu.add(this.musicMenuItem);
+        return menu;
+    }
+
     private JMenu createHelpMenu() {
         JMenu menu = new Menu("Help", this);
         menu.setMnemonic(KeyEvent.VK_H);
@@ -54,6 +71,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
         menu.add(this.aboutMenuItem);
         return menu;
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -66,8 +85,11 @@ public class MenuBar extends JMenuBar implements ActionListener {
                 if (confirm == 0) {
                     // Load Data
                     GamePanel.data = (GameData) IoUtil.readFromFile(chooseFile.getSelectedFile().getPath());
+                    // Setting
+                    this.musicMenuItem.setState(gamePanel.data.isMusic);
+                    this.onMusicChange();
                     // Repaint the Game
-
+                    gamePanel.repaint();
                 }
             }
         } else if (event.getSource() == this.saveMenuItem) {
@@ -86,6 +108,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
             if (confirm == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
+        } else if (event.getSource() == this.musicMenuItem) {
+            this.onMusicChange();
         } else if (event.getSource() == this.aboutMenuItem) {
             showDialog("message", "<!DOCTYPE><html lang='en'><head><meta charset='utf-8'><style>.blue{color:blue}</style></head><body><span>Resource: <span class='blue'>https://www.ewb-uk.org/</body></html>");
         }
@@ -108,5 +132,22 @@ public class MenuBar extends JMenuBar implements ActionListener {
                 break;
         }
         return 0;
+    }
+
+    private void onMusicChange() {
+        // Background Music
+        if (this.musicMenuItem.getState()) {
+            if (this.playMusicUtil == null) {
+                this.playMusicUtil = new PlayMusicUtil(gamePanel.data.backgroundMusicUrl);
+            }
+            this.playMusicUtil.start();
+            gamePanel.data.isMusic = true;
+        } else {
+            if (this.playMusicUtil != null) {
+                this.playMusicUtil.close();
+                this.playMusicUtil = null;
+            }
+            gamePanel.data.isMusic = false;
+        }
     }
 }

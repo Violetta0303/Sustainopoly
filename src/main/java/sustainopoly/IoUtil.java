@@ -1,4 +1,4 @@
-package com.zoctan;
+package sustainopoly;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

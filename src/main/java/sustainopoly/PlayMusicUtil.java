@@ -1,32 +1,38 @@
 package sustainopoly;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.applet.AudioClip;
 
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
+import javax.swing.*;
 
 public class PlayMusicUtil extends Thread {
-        @Override
-        public void run() {
-            File file=new File("src/main/java/music/BGM.mp3");
-            FileInputStream stream= null;
-            try {
-                stream = new FileInputStream(file);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            javazoom.jl.player.Player player= null;
-            try {
-                player = new javazoom.jl.player.Player(stream);
-            } catch (JavaLayerException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                player.play();
-            } catch (JavaLayerException e) {
-                throw new RuntimeException(e);
-            }
+    AudioClip player;
+    String music;
+
+    public PlayMusicUtil(String music) {
+        this.music = music;
+    }
+
+    public static void play(String music) {
+        try {
+            JApplet.newAudioClip(PlayMusicUtil.class.getResource(music)).play();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    public void play() {
+        this.player = JApplet.newAudioClip(this.getClass().getResource(this.music));
+        this.player.loop();
+    }
+
+    public void close() {
+        this.player.stop();
+        this.interrupt();
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        this.play();
+    }
 }

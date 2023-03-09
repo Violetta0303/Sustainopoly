@@ -1,12 +1,12 @@
-package cxzgwing.utils;
+package videoplayer.utils;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class FileUtils {
 

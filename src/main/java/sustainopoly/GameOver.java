@@ -2,11 +2,13 @@ package sustainopoly;
 
 
 import playersInformation.FrameConfig;
+import videoplayer.VideoPlayerMain;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static sustainopoly.GameData.*;
+import static sustainopoly.GamePanel.event;
 
 public class GameOver extends JPanel {
 
@@ -15,35 +17,69 @@ public class GameOver extends JPanel {
         draw(g);
         super.paintChildren(g);
     }
-
     Player[] players = {Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8};
 
-    public void rank() {
+    JLabel jLabel1 = new JLabel();
+    JLabel jLabel2= new JLabel();
+    JLabel jLabel3= new JLabel();
+    JLabel jLabel4= new JLabel();
+    JLabel jLabel5= new JLabel();
+    JLabel jLabel6= new JLabel();
+    JLabel jLabel7= new JLabel();
+    JLabel jLabel8= new JLabel();
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (players[j].score > players[j + 1].score) {
+    public void rank() {
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7 - i; j++) {
+                if ((players[j].leadership+players[j].program+players[j].exp) < (players[j+1].leadership+players[j+1].program+players[j+1].exp)) {
                     Player p_tmp;
                     p_tmp = players[j];
                     players[j] = players[j + 1];
                     players[j + 1] = p_tmp;
 
-                    int ava_tmp;
-                    ava_tmp = FrameConfig.selected[j];
-                    FrameConfig.selected[j] = FrameConfig.selected[j + 1];
-                    FrameConfig.selected[j + 1] = ava_tmp;
+                    ImageIcon ava_tmp;
+                    ava_tmp = FrameConfig.img[FrameConfig.selected[j]];
+                    FrameConfig.img[FrameConfig.selected[j]] = FrameConfig.img[FrameConfig.selected[j + 1]];
+                    FrameConfig.img[FrameConfig.selected[j + 1]] = ava_tmp;
 
                     String id_tmp;
                     id_tmp = FrameConfig.selectedName[j];
                     FrameConfig.selectedName[j] = FrameConfig.selectedName[j + 1];
                     FrameConfig.selectedName[j + 1] = id_tmp;
+                }else if((players[j].leadership+players[j].program+players[j].exp) == (players[j+1].leadership+players[j+1].program+players[j+1].exp)){
+                    if(players[j].effort<players[j+1].effort){
+                        Player p_tmp;
+                        p_tmp = players[j];
+                        players[j] = players[j + 1];
+                        players[j + 1] = p_tmp;
+
+                        ImageIcon ava_tmp;
+                        ava_tmp = FrameConfig.img[FrameConfig.selected[j]];
+                        FrameConfig.img[FrameConfig.selected[j]] = FrameConfig.img[FrameConfig.selected[j + 1]];
+                        FrameConfig.img[FrameConfig.selected[j + 1]] = ava_tmp;
+
+                        String id_tmp;
+                        id_tmp = FrameConfig.selectedName[j];
+                        FrameConfig.selectedName[j] = FrameConfig.selectedName[j + 1];
+                        FrameConfig.selectedName[j + 1] = id_tmp;
+                    }
                 }
             }
         }
+        jLabel1.setIcon(FrameConfig.img[FrameConfig.selected[0]]);
+        jLabel2.setIcon(FrameConfig.img[FrameConfig.selected[1]]);
+        jLabel3.setIcon(FrameConfig.img[FrameConfig.selected[2]]);
+        jLabel4.setIcon(FrameConfig.img[FrameConfig.selected[3]]);
+        jLabel5.setIcon(FrameConfig.img[FrameConfig.selected[4]]);
+        jLabel6.setIcon(FrameConfig.img[FrameConfig.selected[5]]);
+        jLabel7.setIcon(FrameConfig.img[FrameConfig.selected[6]]);
+        jLabel8.setIcon(FrameConfig.img[FrameConfig.selected[7]]);
     }
 
     public void draw(Graphics g) {
+
         rank();
+
         Color c = g.getColor();
         Font f = g.getFont();
         g.setColor(new Color(170, 107, 107));
@@ -143,40 +179,49 @@ public class GameOver extends JPanel {
 
     public GameOver() {
 
-        JLabel jLabel1 = new JLabel(FrameConfig.img[FrameConfig.selected[0]]);
         jLabel1.setBounds(100, 80, 110, 110);
         this.add(jLabel1);
 
-        JLabel jLabel2 = new JLabel(FrameConfig.img[FrameConfig.selected[1]]);
         jLabel2.setBounds(100, 250, 110, 110);
         this.add(jLabel2);
 
-        JLabel jLabel3 = new JLabel(FrameConfig.img[FrameConfig.selected[2]]);
         jLabel3.setBounds(100, 420, 110, 110);
         this.add(jLabel3);
 
-        JLabel jLabel4 = new JLabel(FrameConfig.img[FrameConfig.selected[3]]);
         jLabel4.setBounds(100, 590, 110, 110);
         this.add(jLabel4);
 
-
-        JLabel jLabel5 = new JLabel(FrameConfig.img[FrameConfig.selected[4]]);
         jLabel5.setBounds(590, 80, 110, 110);
         this.add(jLabel5);
 
-        JLabel jLabel6 = new JLabel(FrameConfig.img[FrameConfig.selected[5]]);
         jLabel6.setBounds(590, 250, 110, 110);
         this.add(jLabel6);
 
-        JLabel jLabel7 = new JLabel(FrameConfig.img[FrameConfig.selected[6]]);
         jLabel7.setBounds(590, 420, 110, 110);
         this.add(jLabel7);
 
-        JLabel jLabel8 = new JLabel(FrameConfig.img[FrameConfig.selected[7]]);
         jLabel8.setBounds(590, 590, 110, 110);
         this.add(jLabel8);
 
+        playEasterEgg();
+    }
 
+    public void playEasterEgg() {
+        //If all the tasks have been done, play the Easter Egg Animation
+        if (event.flag_MentalHealthCentre == 0 && event.flag_FoodBank == 0 && event.flag_ActivityCentre == 0
+                && event.flag_Market == 0 && event.flag_SocialMedia == 0 && event.flag_Radio == 0) {
+            try {
+                VideoPlayerMain.init();
+            } catch (UnsupportedLookAndFeelException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }

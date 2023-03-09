@@ -3,10 +3,10 @@ package sustainopoly;
 import javax.swing.*;
 
 public class EndGamePanelUtil extends JFrame {
-
+    public static JFrame endFrame;
     public static void init(){
 
-        JFrame endFrame = new JFrame("GAME OVER");
+        endFrame = new JFrame("GAME OVER");
 
         //Set Game's LOGO
         endFrame.setIconImage(new ImageIcon("src/main/java/images/Logo.png").getImage());
@@ -15,7 +15,13 @@ public class EndGamePanelUtil extends JFrame {
 
         endFrame.setLocationRelativeTo(null);
 
-        endFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        endFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        endFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                endFrame.setVisible(false);
+            }
+        });
 
         endFrame.setResizable(false);
 

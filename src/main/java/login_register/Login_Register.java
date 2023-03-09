@@ -64,6 +64,7 @@ public class Login_Register extends JFrame{
         frame.add(jLabel);
 
         frame.setBounds(400, 100, 800, 540);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 

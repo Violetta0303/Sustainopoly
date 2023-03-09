@@ -1,4 +1,4 @@
-package game;
+package sustainopoly;
 
 import javax.swing.*;
 import java.util.List;
@@ -54,5 +54,4 @@ public class IconThread extends Observable implements Runnable {
         }
         return  playersum;
     }
-
 }

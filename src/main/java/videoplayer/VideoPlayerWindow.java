@@ -1,5 +1,6 @@
 package videoplayer;
 
+import sustainopoly.StartGame;
 import videoplayer.dll.DLL;
 import videoplayer.utils.Constants;
 import videoplayer.utils.FileUtils;
@@ -17,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Window extends JFrame {
+import static videoplayer.VideoPlayerMain.videoPlayerFrame;
+
+public class VideoPlayerWindow extends JFrame {
     // private final Logger logger = LoggerFactory.getLogger(Window.class);
 
     private static final String FIELD_PAUSE = "pause";
@@ -63,7 +66,7 @@ public class Window extends JFrame {
 
     private Button previousButton;
 
-    public Window() {
+    public VideoPlayerWindow() {
         //Set Game's LOGO
         this.setIconImage(new ImageIcon("src/main/java/images/Logo.png").getImage());
 
@@ -77,7 +80,14 @@ public class Window extends JFrame {
         this.addWindowFocusListener(getWindowFocusListener());
 
         // Window close event: releases resources and exits the program
-        addWindowListener(closeWindowReleaseMedia());
+//        addWindowListener(closeWindowReleaseMedia());
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                setVisible(false);
+            }
+        });
+
         // Set default window close event
         // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -247,6 +257,8 @@ public class Window extends JFrame {
         // Set window minimum
         this.setMinimumSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 
+        this.setLocationRelativeTo(null);
+
         // Set window visible
         this.setVisible(true);
     }
@@ -286,7 +298,7 @@ public class Window extends JFrame {
     /**
      * Adjust video time (how many milliseconds forward or backward exactly)
      *
-     * @param offset 偏移量，毫秒
+     * @param offset ms
      */
     private void adaptVideoTime(int offset) {
         if (firstPlay) {
@@ -359,7 +371,7 @@ public class Window extends JFrame {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                videos.add("src/main/java/video/Eggplot.mov");
+                videos.add("src/main/java/video/EasterEgg.mp4");
                 videos.sort(Comparator.naturalOrder());
                 if (videos.size() <= 1) {
                     previousButton.setEnabled(false);
@@ -584,13 +596,9 @@ public class Window extends JFrame {
         return new WindowAdapter() {
             @Override
             public void windowStateChanged(WindowEvent state) {
-                // state=1或7为最小化，此处不处理
-
                 if (state.getNewState() == 0) {
-                    // System.out.println("窗口恢复到初始状态");
                     setProgressWidthAutoAdaptWindow();
                 } else if (state.getNewState() == 6) {
-                    // System.out.println("窗口最大化");
                     setProgressWidthAutoAdaptWindow();
                 }
             }
