@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+  <div class="container">
+		 <img class="logo" src="./image/微信图片_20230310100256.png" >
+         <div class="title">Food&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bank</div>
+        
+         <div class="vega"> 
+			 <div class="vega_top">
+				<h3>Today &nbsp;we&nbsp; provide&nbsp;</h3>
+				<img src="image/simile.jpg" >
+			</div>
+            <ul class="vega-container">
+                <li class="va">
+                     <p>Vegetable </p>
+                </li>
+                <li class="vg">
+                    <p>Potato</p>
+                    <img src="./image/potato.png"></img>
+                     <div class="Number">
+						 <span id="number-1" style="margin-left:20px;">51 </span>
+                        <span >available</span>
+                        
+                     </div>
+                </li>
+                 
+                <li class="vg">
+                  <p>Carrot</p>
+                  <img src="./image/carrots.png"></img>
+                  <div class="Number">
+					  <span id="number-2" style="margin-left:20px;">50</span>
+					  <span >available</span>
+                    
+                 </div>
+              </li>
+              <li class="vg">
+                <p>Tomato</p>
+                <img src="./image/tomato.png"></img>
+                <div class="Number">
+					<span id="number-3" style="margin-left:20px;">53</span>
+                  <span >available</span>
+                  
+               </div>
+            </li>
+            </ul>
+
+           <!-- /**************************/ -->
+           <ul class="vega-container">
+            <li class="va">
+                 <p>Staplefood</p>
+                 
+            </li>
+            <li class="vg">
+                <p>Bread</p>
+                <img src="image/bread.png"></img>
+                <div class="Number">
+					<span id="number-4" style="margin-left:20px;">49</span>
+                  <span >available </span>
+                  
+               </div>
+            </li>
+             
+            <li class="vg">
+              <p>Rice</p>
+              <img src="./image/rice.png"></img>
+              <div class="Number">
+				  <span id="number-5" style="margin-left:20px;">52</span>
+                  <span >available</span>
+                
+             </div>
+          </li>
+          <li class="vg">
+            <p>Bun</p>
+            <img src="./image/buns.png"></img>
+            <div class="Number">
+				<span id="number-6">48</span>
+               <span >available</span>
+              
+           </div>
+        </li>
+        </ul>
+
+        <!-- /************************/ -->
+
+        <ul class="vega-container">
+          <li class="va">
+               <p>Fruits </p>
+            
+          </li>
+          <li class="vg">
+            <p>Apple</p>
+            <img src="./image/apple%20(1).png"></img>
+            <div class="Number">
+				<span id="number-7" style="margin-left:20px;">51</span>
+              <span >available </span>
+              
+           </div>
+        </li>
+          <li class="vg">
+            <p>Watermelon</p>
+            <img src="./image/watermelon.png"></img>
+            <div class="Number">
+				<span id="number-8" style="margin-left:20px;">47</span>
+              <span >available</span>
+              
+           </div>
+        </li>
+       
+      <li class="vg">
+        <p>Mango</p>
+        <img src="./image/mango.png"></img>
+        <div class="Number">
+			<span id="number-9" style="margin-left:20px;">50</span>
+          <span >available</span>
+          
+       </div>
+    </li>
+      </ul>
+         </div> 
+         <div class="liuyan">
+           <h3>message &nbsp;board</h3>
+           <textarea id="liuyanmianban"></textarea>
+           <button  id="btn">issue</button>
+           <ul id="news"></ul>
+         </div>
+  </div>
+  <script>
+    setInterval(a1,1000)
+     setInterval(a2,2000)
+     setInterval(a3,3000)
+     setInterval(a4,2000)
+     setInterval(a5,3000)
+     setInterval(a6,1000)
+     setInterval(a7,3000)
+     setInterval(a8,1000)
+     setInterval(a9,2000)
+
+    var a=document.querySelector('#number-1')
+    var b=document.querySelector('#number-2')
+    var c=document.querySelector('#number-3')
+    var d=document.querySelector('#number-4')
+    var e=document.querySelector('#number-5')
+    var f=document.querySelector('#number-6')
+    var g=document.querySelector('#number-7')
+    var h=document.querySelector('#number-8')
+    var i=document.querySelector('#number-9')
+    var one=51 
+    var two=50
+    var three=53
+    var four=49
+    var five=52 
+    var six=50 
+    var seven=51  
+    var eight=47 
+    var nine=50
+
+    function a1(){
+        if(one>0){
+          one--
+          a.innerHTML=one 
+        }
+        else {
+           one=0 
+           a.innerHTML=one
+        }
+    }
+
+    function a2(){
+      if(two>0){
+         two-- 
+         b.innerHTML=two 
+      }
+      else {
+         two=0 
+         b.innerHTML=two
+      }
+    }
+  
+    function a3(){
+      
+      if(three>0){
+         three-=2
+         c.innerHTML=three 
+      }
+      else {
+        three=0 
+         c.innerHTML=three
+      }
+    }
+
+    function a4(){
+      if(four>0){
+        four-- 
+         d.innerHTML=four
+      }
+      else {
+        four=0 
+        d.innerHTML=four
+      }
+    }
+
+
+    function a5(){
+      if(five>0){
+        five-=2 
+         e.innerHTML=five
+      }
+      if(five==0||five<0) {
+        five=0 
+         e.innerHTML=five
+      }
+    }
+
+
+    function a6(){
+      if(six>0){
+         six-=3
+        f.innerHTML=six 
+      }
+     if(six==0||six<0) {
+         six=0 
+        f.innerHTML=six
+      }
+    }
+
+
+    function a7(){
+      if(seven>0){
+        seven-=2
+        g.innerHTML=seven 
+      }
+      else {
+         seven=0 
+         g.innerHTML=seven
+      }
+    }
+
+
+    function a8(){
+      if(eight>0){
+        eight-- 
+         h.innerHTML=eight 
+      }
+      else {
+        eight=0 
+         h.innerHTML=eight
+      }
+    }
+
+
+    function a9(){
+      if(nine>0){
+        nine-- 
+         i.innerHTML=nine
+      }
+      else {
+         nine=0 
+         i.innerHTML=nine
+      }
+    }
+    
+    
+</script>
+  <script>
+      var btn=document.querySelector('#btn')
+      var liuyan=document.querySelector('#liuyanmianban')
+      var ul=document.querySelector('#news')
+      btn.onclick=function(){
+         if(liuyan.value=='') {
+           alert('please enter the content')
+           return false 
+         }
+         else {
+           var li=document.createElement('li')
+           li.innerHTML=liuyan.value+"<a href='javascript:;'>delete</a>";
+        ul.insertBefore(li,ul.children[0])
+        var as = document.querySelectorAll('a');
+        for(var i=0;i<as.length;i++){
+           as[i].onclick=function(){
+            ul.removeChild(this.parentNode);
+           }
+        }
+
+         }
+      }
+    
+  </script>
+
+</body>
+
+</html>

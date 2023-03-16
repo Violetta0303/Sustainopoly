@@ -1,0 +1,116 @@
+@font-face {
+	font-family: 'Comic-Sans-MS-Regular';
+	src: url(../font/Comic-Sans-MS-Regular/Comic-Sans-MS-Regular-2.ttf);
+}
+
+body {
+  background-color: #F5F5DC;
+  font-family: 'Comic-Sans-MS-Regular';
+}
+body .container {
+  width: 540px;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
+}
+.logo {
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	top: 5px;
+	left: 0;
+}
+body .container .title {
+  width: 540px;
+  height: 40px;
+  font-size: 30px;
+  border-bottom: 1px solid grey;
+  text-align: center;
+}
+body .container .vega {
+  width: 100%;
+  /* margin-left: -200px; */
+}
+.vega_top {
+	display: flex;
+	align-items: center;
+}
+.vega_top img {
+	width: 30px;
+	height: 30px;
+	margin-left: 20px;
+}
+body .container .vega .vega-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin-left: -50px;
+}
+body .container .vega .vega-container li {
+  width: 23%;
+  height: 180px;
+}
+body .container .vega .vega-container li img {
+  width: 100%;
+  height: 90px;
+}
+body .container .vega .vega-container li p {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  text-align: center;
+  color: red;
+}
+body .container .vega .vega-container li .Number {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  color: black;
+}
+body .container .vega .vega-container li .Number span {
+  text-align: center;
+  width: 120px;
+  line-height: 30px;
+  height: 30px;
+}
+body .container .vega .vega-container .va {
+  background-color: #efefef;
+  text-align: center;
+  border-radius: 10px;
+}
+body .container .vega .vega-container .va p {
+  height: 100px;
+  line-height: 100px;
+  font-size: 20px;
+}
+body .container .liuyan {
+  width: 100%;
+}
+body .container .liuyan #liuyanmianban {
+  width: 540px;
+  height: 100px;
+  border: 1px solid pink;
+  outline: none;
+  resize: none;
+}
+body .container .liuyan ul {
+  margin-top: 20px;
+}
+body .container .liuyan li {
+  width: 300px;
+  padding: 5px;
+  background-color: grey;
+  color: red;
+  font-size: 14px;
+  margin: 15px 0;
+}
+body .container .liuyan li a {
+  float: right;
+  text-decoration: none;
+}
