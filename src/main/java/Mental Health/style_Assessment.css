@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 li {
@@ -24,7 +25,6 @@ a {
     *zoom:1
 }
 
-/* 字体申明 */
 @font-face {
     font-family: 'icomoon';
     src:  url('fonts/icomoon.eot?lhoffy');
@@ -38,7 +38,6 @@ a {
   }
 
 
-/* 居中版型,后面可以直接调用 */
 .w {
     width: 1280px;
     margin: auto;
@@ -52,6 +51,7 @@ body {
 /* Header Start */
 .header {
     height: 60px;
+    background-color: #02AAB0;
 }
 
 /* header_L */
@@ -119,7 +119,7 @@ body {
 .search input {
     float: left;
     width: 250px; 
-    height: 24px;
+    height: 28px;
     outline:none;
     border: 2px solid #050505;
     border-top-left-radius:5px;
@@ -175,7 +175,7 @@ body {
     float: right;
     height: 28px;
     width: 28px;
-    padding-left: 15px;
+    margin-left: 15px;
 }
 
 .nav_Func ul li a {
@@ -187,11 +187,17 @@ body {
 }
 /* Header End */
 
+
+.bottom {
+    background: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+}
+
+
 /* Test Start */
 .test {
-    height: 5890px;
+    height: 5988px;
     width: 1280px;
-    background: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+    
 }
 
 /* test_L */
@@ -214,6 +220,31 @@ body {
     margin-top: 10px;
 }
 
+/* Submit */
+#btn {
+    display: block;
+    margin-left: 375px;
+    width: 150px;
+    height: 42px;
+    background-color: #02AAB0;
+    border: 0px;
+    border-radius: 5px;
+    font-family: Comic Sans MS;
+    color: #fff;
+}
+
+/* Result */
+.test_L .result {
+    margin-top: 68px;
+    margin-left: 290px;
+    margin-bottom: 68px;
+    width: 320px;
+    font-size: 20px;
+    font-family: Comic Sans MS;
+    color: #050505;
+    background-color: rgb(2, 170, 176, 0.7);
+}
+
 /* test_R */
 .test_R {
     float: right;
@@ -229,7 +260,7 @@ body {
 .test_R .title {
     width: 250px;
     height: 44px;
-    border: 1px solid #02AAB0;
+    border-bottom: 1px solid #02AAB0;
 }
 
 .test_R .title h1 {
@@ -269,6 +300,7 @@ body {
     line-height: 40px;
     font-size: 14px;
     text-align: center;
+    border-right: 1px solid #02AAB0;
 }
 
 .test_R .subtitle p {
@@ -284,6 +316,8 @@ body {
 
 .answer_Sheet ul {
     padding: 10px; 
+    margin-left: 10px;
+    margin-top: 5px;
     text-align: left;
 }
 
@@ -292,9 +326,10 @@ body {
     margin-bottom: 5px; 
     height: 30px; 
     width: 30px; 
+    margin-left: 1px;
     line-height: 30px; 
     text-align: center; 
-    border: 1px solid #e4e4e4;
+    border: 1px solid rgb(228, 228, 228, 0);
 }
 
 .answer_Sheet li a {
@@ -303,12 +338,120 @@ body {
 }
 
 .answer_Sheet li:hover { 
-    color: #389fc3;
-    border-color: #389fc3;
+    border-color: #02AAB0;
 }
 
 .answer_Sheet li a:hover { 
-    color: #389fc3;
+    color: #02aab0;
+}
+/* Test End */
+
+
+/* Footer Start */
+.footer {
+    height: 300px;
+    margin-top: 126px;
+    /* background-color: #02AAB0; */
 }
 
-/* Test End */
+.footer .con {
+    margin-left: 200px;
+    width: 880px;
+    height: 200px;
+    /* background-color: salmon; */
+}
+
+.footer .con .conL {
+    float: right;
+    width: 150px;
+    height: 150px;
+    margin-right: 25px;
+    margin-top: 28px;
+    /* background-color: yellow; */
+}
+
+.conL .images {
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+
+.conL .suba a {
+    margin-left: 40px;
+    line-height: 54px;
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    color: #050505;
+    text-align: center;
+}
+
+.conL .suba a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.footer .con .conR {
+    float: left;
+    width: 280px;
+    height: 150px;
+    margin-left: 25px;
+    margin-top: 28px;
+    /* background-color: yellow; */
+}
+
+.conR ul {
+    float: left;
+}
+
+.conR li {
+    
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+.conR li a{
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    color: #050505;
+} 
+
+.conR li a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+
+} 
+
+.con2 {
+    margin-left: 200px;
+    width: 880px;
+    height: 100px;
+    /* background-color: gold; */
+}
+
+.footer .social {
+    /* background-color: seagreen; */
+    float: right;
+}
+
+.social ul li {
+    float: right;
+    margin: 0 15px;
+}
+
+.social ul li a {
+    display: block;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    font-size: 20px;
+    font-family: 'icomoon';
+    color: #050505;
+}
+
+.social ul li a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+/* Footer end */

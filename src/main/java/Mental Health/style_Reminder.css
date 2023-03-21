@@ -1,0 +1,40 @@
+.body {
+    background-color: #565656;
+}
+
+.calendar{
+	width:450px;
+	height:350px;
+	background:#fff;
+	box-shadow:0px 1px 1px rgba(0,0,0,0.1);
+}
+.body-list ul{
+	width:100%;
+	font-family:arial;
+	font-weight:bold;
+	font-size:14px;
+}
+.body-list ul li{
+	width:14.28%;
+	height:36px;
+	line-height:36px;
+	list-style-type:none;
+	display:block;
+	box-sizing:border-box;
+	float:left;
+	text-align:center;
+}
+
+.lightgrey{
+	color:#a8a8a8; /*浅灰色*/
+}
+.darkgrey{
+	color:#565656; /*深灰色*/
+}
+.green{
+	color:#6ac13c; /*绿色*/
+}
+.greenbox{
+	border:1px solid #6ac13c;
+	background:#e9f8df; /*浅绿色背景*/
+}

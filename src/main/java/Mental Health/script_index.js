@@ -50,8 +50,6 @@ window1.onclick = function() {
         onl4.style.display = "none";
     }
     if(onl1.style.display == "none") {
-    //      onl1.style.display = "none";
-    // } else {
         onl1.style.display = "block";
         flag1 = true;
     }

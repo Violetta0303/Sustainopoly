@@ -1,9 +1,10 @@
 var flag = false;
+var result = document.getElementById('result')
+
 function processForm() {
     var sum = 0;
     hc = new Array(24);
 
-    // Q1
     if (document.test_Form.q1[0].checked == 1)
         sum += 0;
     if (document.test_Form.q1[1].checked == 1)
@@ -14,7 +15,7 @@ function processForm() {
         sum += 3;
     if (document.test_Form.q1[4].checked == 1)
         sum += 4;
-
+    
     // Q2
     if (document.test_Form.q2[0].checked == 1)
         sum += 0;
@@ -251,19 +252,32 @@ function processForm() {
     if (document.test_Form.q24[5].checked == 1)
         sum += 4;
 
+    // result
 
-    // Result
-    if (sum < 8)
-        document.test_Form.answer.value = "Your total score is " + sum + " points\n Normal";
-    if (sum < 20 && sum >= 8)
-        document.test_Form.answer.value = "Your total score is " + sum + " points\n Possible depression";
-    if (sum < 35 && sum >= 20)
-        document.test_Form.answer.value = "Your total score is " + sum + " points\n Must have depression";
-    if (sum >= 35)
-        document.test_Form.answer.value = "Your total score is " + sum + " points\n Major Depressive Disorder";
+    result.setAttribute('style', 'padding: 10px;');    
+    if (sum < 8 && flag == false) {
+        
+        result.appendChild(document.createTextNode(`Your total score is ${sum} points. Normal`));
+        // Element.getElementById('res1').
+        flag = true;
+    }
 
-    flag = true;
+    if (sum < 20 && sum >= 8 && flag == false) {
+        result.appendChild(document.createTextNode(`Your total score is ${sum} points. Possible depression`));
+        flag = true;
+    }
+
+    if (sum < 35 && sum >= 20 && flag == false) {
+        result.appendChild(document.createTextNode(`Your total score is ${sum} points. Must have depression`));
+        flag = true;
+    }
+
+    if (sum >= 35 && flag == false) {
+        result.appendChild(document.createTextNode(`Your total score is ${sum} points. Major Depressive Disorder`));
+        flag = true;
+    }
 }
+
 
 
 window.onload = function () {
@@ -280,10 +294,10 @@ window.onload = function () {
         m = addZero(m);
         s = addZero(s)
         
-	    document.querySelector(".count").innerHTML = `time: ${m} : ${s}`;
+	    document.querySelector(".count").innerHTML = `Time: ${m} : ${s}`;
     
         if (time <= 0 || flag == true) {
-            document.querySelector(".count").innerHTML = "活动已结束";
+            document.querySelector(".count").innerHTML = "Finsh";
             processForm();
             return;
         }
@@ -291,3 +305,4 @@ window.onload = function () {
         setTimeout(countDown, 1000);
     }
 }
+

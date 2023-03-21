@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 li {
@@ -24,7 +25,6 @@ a {
     *zoom:1
 }
 
-/* 字体申明 */
 @font-face {
     font-family: 'icomoon';
     src:  url('fonts/icomoon.eot?lhoffy');
@@ -38,11 +38,10 @@ a {
   }
 
 
-/* 居中版型,后面可以直接调用 */
 .w {
     width: 1280px;
     margin: auto;
-    color: #62b6a3;
+    font-family: Comic Sans MS;
 }
 
 body {
@@ -52,6 +51,7 @@ body {
 /* Header Start */
 .header {
     height: 60px;
+    background-color: #02AAB0;
 }
 
 /* header_L */
@@ -104,6 +104,7 @@ body {
 .header_R {
     float: left;
     height: 60px;
+    background-color: #02AAB0;
 }
 
 /* Search */
@@ -118,9 +119,9 @@ body {
 .search input {
     float: left;
     width: 250px; 
-    height: 24px;
+    height: 28px;
     outline:none;
-    border: 2px solid #02AAB0;
+    border: 2px solid #050505;
     border-top-left-radius:5px;
     border-bottom-left-radius:5px;
     border-right: 0;
@@ -138,7 +139,7 @@ body {
     font-size: 18px;
     font-family: 'icomoon';
     color: #fff;
-    background-color: #02AAB0;
+    background-color: #050505;
     border-top-right-radius: 5px;
     border-bottom-right-radius:5px;
     border: 0;
@@ -151,10 +152,11 @@ body {
     height: 49px;
     width: 49px;
     margin-top: 7.5px;
+    background-color: #02AAB0;
 }
 
 .user img {
-    border: 2px solid #02AAB0;
+    border: 2px solid #050505;
     border-radius: 50%;
     vertical-align: middle;
 }
@@ -166,13 +168,14 @@ body {
     margin-top: 20px;
     height: 28px;
     width: 86px;
+    background-color: #02AAB0;
 }
 
 .nav_Func ul li {
     float: right;
     height: 28px;
     width: 28px;
-    padding-left: 15px;
+    margin-left: 15px;
 }
 
 .nav_Func ul li a {
@@ -180,19 +183,9 @@ body {
     line-height: 28px;
     font-size: 28px;
     font-family: 'icomoon';
-    color: #02AAB0;
+    color: #050505;
 }
 /* Header End */
 
-/* Content Start */
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.content iframe {
-    width: 600px;
-    height: 629px;
-}
-/* Content End */
+

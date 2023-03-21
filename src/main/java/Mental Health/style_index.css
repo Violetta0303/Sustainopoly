@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 li {
@@ -24,7 +25,6 @@ a {
     *zoom:1
 }
 
-/* 字体申明 */
 @font-face {
     font-family: 'icomoon';
     src:  url('fonts/icomoon.eot?lhoffy');
@@ -38,7 +38,6 @@ a {
   }
 
 
-/* 居中版型,后面可以直接调用 */
 .w {
     width: 1280px;
     margin: auto;
@@ -118,7 +117,7 @@ body {
 .search input {
     float: left;
     width: 250px; 
-    height: 24px;
+    height: 28px;
     outline:none;
     border: 2px solid #02AAB0;
     border-top-left-radius:5px;
@@ -172,7 +171,7 @@ body {
     float: right;
     height: 28px;
     width: 28px;
-    padding-left: 15px;
+    margin-left: 15px;
 }
 
 .nav_Func ul li a {
@@ -605,7 +604,7 @@ body {
 
 .conL .images {
     float: right;
-    margin-right: 35px;
+    margin-right: 20px;
     margin-top: 20px;
 }
 
@@ -613,7 +612,7 @@ body {
 .conL .suba a {
     margin-left: 40px;
     line-height: 54px;
-    font-size: 14px;
+    font-size: 18px;
     font-family: Comic Sans MS;
     color: #050505;
     text-align: center;
@@ -644,7 +643,7 @@ body {
 }
 
 .conR li a{
-    font-size: 14px;
+    font-size: 18px;
     font-family: Comic Sans MS;
     color: #050505;
 } 
@@ -677,7 +676,7 @@ body {
     height: 30px;
     padding: 0 10px;
     line-height: 30px;
-    font-size: 16px;
+    font-size: 20px;
     font-family: 'icomoon';
     color: #050505;
 }
