@@ -188,4 +188,197 @@ body {
 /* Header End */
 
 
+/* Content Start */
+.content_main {
+    background: linear-gradient(to bottom, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+}
+
+.wrapper {
+    /* float: left; */
+    width: 840px;
+    height: 636px;
+    padding: 10px 20px;
+    position: relative;
+    border: 1px dashed #02AAB0;
+    background-color: rgb(255, 255, 255);
+}
+
+.wrapper .blank {
+    height: 12px;
+}
+
+.box {
+    width: 650px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    position: absolute;
+    margin-left: 65px;
+    z-index: 100;
+    background-color: white;
+}
+
+.post {
+    width: 270px;
+    line-height: 60px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 20px;
+    font-size: 26px;
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    background-color: #02AAB0;
+}
+
+.sr{
+    width: 563px;
+    height: 40px;
+    border: 1px solid #cccccc;
+    outline: none;
+    margin-bottom: 20px;
+    text-indent: 1em;
+    font-family: Comic Sans MS;
+}
+
+.sct{
+    width: 251px;
+    height: 40px;
+    margin-bottom: 20px;
+    font-family: Comic Sans MS;
+}
+
+.sample {
+    overflow: auto;
+    height: 200px;
+    width: 800px;
+}
+
+.line{
+    height: 80px;
+    padding: 20px 0;
+    color: #666666;
+    border-bottom: 1px dashed #999999;
+}
+
+.line h3{
+    height: 25px;
+}
+
+
+.line>div{
+    float: left;
+}
+
+.line>div:nth-of-type(2){
+    margin-top: -12px;
+    margin-left: 10px;
+    
+}
+
+
+/* Footer Start */
+.footer {
+    height: 300px;
+    background-color: #02AAB0;
+}
+
+.footer .con {
+    margin-left: 200px;
+    width: 880px;
+    height: 200px;
+}
+
+.footer .con .conL {
+    float: right;
+    width: 150px;
+    height: 150px;
+    margin-right: 25px;
+    margin-top: 28px;
+}
+
+.conL .images {
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+
+.conL .suba a {
+    margin-left: 40px;
+    line-height: 54px;
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    color: #050505;
+    text-align: center;
+}
+
+.conL .suba a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.footer .con .conR {
+    float: left;
+    width: 280px;
+    height: 150px;
+    margin-left: 25px;
+    margin-top: 28px;
+}
+
+.conR ul {
+    float: left;
+}
+
+.conR li {
+    
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+.conR li a{
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    color: #050505;
+} 
+
+.conR li a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+
+} 
+
+.con2 {
+    margin-left: 200px;
+    width: 880px;
+    height: 100px;
+    /* background-color: gold; */
+}
+
+.footer .social {
+    /* background-color: seagreen; */
+    float: right;
+}
+
+.social ul li {
+    float: right;
+    margin: 0 15px;
+}
+
+.social ul li a {
+    display: block;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    font-size: 20px;
+    font-family: 'icomoon';
+    color: #050505;
+}
+
+.social ul li a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+/* Footer end */
+
 
