@@ -12,41 +12,58 @@ import javax.swing.*;
 
 public class Login_Register extends JFrame{
 
+    Font f;
+
+    JFrame frame;
+
+    JLabel nameStr;
+
+    JLabel passwordStr;
+
+    JTextField userID;
+
+    JPasswordField password;
+
+    JButton buttonlogin;
+
+    JButton buttonregister;
+
+    ImageIcon image;
 
     Login_Register() {
         init();
     }
     //Initialise the login interface
     public void init() {
-        Font f = new Font("Comic Sans MS", Font.BOLD, 12);
+        f = new Font("Comic Sans MS", Font.BOLD, 12);
 
-        JFrame frame = new JFrame("Login");
+        frame = new JFrame("Login");
         frame.setLayout(null);
 
-        JLabel nameStr = new JLabel("ID:");
+        nameStr = new JLabel("ID:");
         nameStr.setBounds(250, 200, 100, 25);
         nameStr.setFont(f);
         frame.add(nameStr);
 
-        JLabel passwordStr = new JLabel("Password:");
+        passwordStr = new JLabel("Password:");
         passwordStr.setBounds(250, 250, 100, 25);
         passwordStr.setFont(f);
         frame.add(passwordStr);
 
-        JTextField userID = new JTextField();
+        userID = new JTextField();
         userID.setBounds(320, 200, 150, 25);
         frame.add(userID);
 
-        JPasswordField password = new JPasswordField();
+        password = new JPasswordField();
         password.setBounds(320, 250, 150, 25);
         frame.add(password);
 
-        JButton buttonlogin = new JButton("Login");
+        buttonlogin = new JButton("Login");
         buttonlogin.setBounds(300, 300, 90, 25);
         buttonlogin.setFont(f);
         frame.add(buttonlogin);
 
-        JButton buttonregister = new JButton("Register");
+        buttonregister = new JButton("Register");
         buttonregister.setBounds(400, 300, 90, 25);
         buttonregister.setFont(f);
         frame.add(buttonregister);
@@ -55,7 +72,7 @@ public class Login_Register extends JFrame{
         frame.setIconImage(new ImageIcon("src/main/java/images/Logo.png").getImage());
 
         //Set Background
-        ImageIcon image = new ImageIcon("src/main/java/images/BG_Login_Register.jpg");
+        image = new ImageIcon("src/main/java/images/BG_Login_Register.jpg");
         JLabel jLabel = new JLabel(image);
         jLabel.setBounds(0,0,800,540);
 
