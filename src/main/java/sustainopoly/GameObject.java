@@ -1,12 +1,13 @@
 package sustainopoly;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Game Object
  * set images' position
  */
-public class GameObject {
+public class GameObject implements Serializable {
 
     Image img; //picture
     int x,y; //position

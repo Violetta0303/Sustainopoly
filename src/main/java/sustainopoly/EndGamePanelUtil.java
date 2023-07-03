@@ -1,10 +1,16 @@
 package sustainopoly;
 
+import videoplayer.VideoPlayerMain;
+
 import javax.swing.*;
+
+import static sustainopoly.GameData.event;
 
 public class EndGamePanelUtil extends JFrame {
     public static JFrame endFrame;
     public static void init(){
+        //Stop Playing the BGM
+        PlayMusicUtil.close();
 
         endFrame = new JFrame("GAME OVER");
 
@@ -15,14 +21,6 @@ public class EndGamePanelUtil extends JFrame {
 
         endFrame.setLocationRelativeTo(null);
 
-//        endFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        endFrame.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                endFrame.setVisible(false);
-            }
-        });
-
         endFrame.setResizable(false);
 
         GameOver gameOver = new GameOver();
@@ -30,6 +28,7 @@ public class EndGamePanelUtil extends JFrame {
 
         endFrame.getContentPane().add(gameOver);
         endFrame.setVisible(true);
+
     }
 
 }

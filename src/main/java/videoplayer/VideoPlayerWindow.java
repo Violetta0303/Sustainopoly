@@ -1,6 +1,5 @@
 package videoplayer;
 
-import sustainopoly.StartGame;
 import videoplayer.dll.DLL;
 import videoplayer.utils.Constants;
 import videoplayer.utils.FileUtils;
@@ -17,8 +16,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
-
-import static videoplayer.VideoPlayerMain.videoPlayerFrame;
 
 public class VideoPlayerWindow extends JFrame {
     // private final Logger logger = LoggerFactory.getLogger(Window.class);
@@ -189,12 +186,12 @@ public class VideoPlayerWindow extends JFrame {
         buttonPanel.add(forwardButton);
 
         // Eggplot Button
-        Button eggplotButton = new Button("Eggplot");
-        eggplotButton.setFont(f);
-        eggplotButton.setBackground(new Color(220, 190, 190));
-        eggplotButton.setFocusable(false);
-        eggplotButton.addMouseListener(mouseClickedEggplot());
-        buttonPanel.add(eggplotButton);
+        Button eastereggButton = new Button("Easter Egg");
+        eastereggButton.setFont(f);
+        eastereggButton.setBackground(new Color(220, 190, 190));
+        eastereggButton.setFocusable(false);
+        eastereggButton.addMouseListener(mouseClickedEasterEgg());
+        buttonPanel.add(eastereggButton);
 
         // Slow Play button: 0.1 decrement per step, min. 0.5x speed
         Button slowSpeedButton = new Button("<<<");
@@ -320,13 +317,13 @@ public class VideoPlayerWindow extends JFrame {
     }
 
     /**
-     * Get Backstory Video
+     * Get Backstory Animation
      */
     private MouseAdapter mouseClickedBackstory() {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                videos.add("src/main/java/video/Backstory.mp4");
+                videos.add("src/main/java/animation/Backstory.mp4");
                 videos.sort(Comparator.naturalOrder());
                 if (videos.size() <= 1) {
                     previousButton.setEnabled(false);
@@ -365,13 +362,13 @@ public class VideoPlayerWindow extends JFrame {
     }
 
     /**
-     * Get Eggplot Video
+     * Get Easter Egg Animation
      */
-    private MouseAdapter mouseClickedEggplot() {
+    private MouseAdapter mouseClickedEasterEgg() {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                videos.add("src/main/java/video/EasterEgg.mp4");
+                videos.add("src/main/java/animation/EasterEgg.mp4");
                 videos.sort(Comparator.naturalOrder());
                 if (videos.size() <= 1) {
                     previousButton.setEnabled(false);

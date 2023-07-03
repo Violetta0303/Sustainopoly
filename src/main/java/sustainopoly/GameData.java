@@ -1,29 +1,44 @@
 package sustainopoly;
 
+import playersInformation.FrameConfig;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Game Data
  * import images
  */
-public class GameData {
+public class GameData implements Serializable {
     //Background Music
     public boolean isMusic = false;
+
+    //Voice Announcement
+    public boolean isVoiceAnnounce = false;
+
+    public boolean isPause = false;
+
+    public boolean isRestart = false;
+
+    public static Events event = new Events();
+
     public String backgroundMusicUrl = "src/main/java/music/BGM.mp3";
+
+    public String throwdiceMusicUrl = "src/main/java/music/ThrowDice.mp3";
 
     // Background image
     public static Image bg = GameUtil.getImage("src/main/java/images/Map.png");
 
     // Player images
-    public static Image play1 = GameUtil.getImage(("src/main/java/images/Player/1.jpg"));
-    public static Image play2 = GameUtil.getImage(("src/main/java/images/Player/2.jpg"));
-    public static Image play3 = GameUtil.getImage(("src/main/java/images/Player/3.jpg"));
-    public static Image play4 = GameUtil.getImage(("src/main/java/images/Player/4.jpg"));
-    public static Image play5 = GameUtil.getImage(("src/main/java/images/Player/5.jpg"));
-    public static Image play6 = GameUtil.getImage(("src/main/java/images/Player/6.jpg"));
-    public static Image play7 = GameUtil.getImage(("src/main/java/images/Player/7.jpg"));
-    public static Image play8 = GameUtil.getImage(("src/main/java/images/Player/8.jpg"));
+    public static Image play1 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[0]+1)+".jpg");
+    public static Image play2 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[1]+1)+".jpg");
+    public static Image play3 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[2]+1)+".jpg");
+    public static Image play4 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[3]+1)+".jpg");
+    public static Image play5 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[4]+1)+".jpg");
+    public static Image play6 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[5]+1)+".jpg");
+    public static Image play7 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[6]+1)+".jpg");
+    public static Image play8 = GameUtil.getImage("src/main/java/images/Player/"+(FrameConfig.selected[7]+1)+".jpg");
 
     //Player
     public static Player Player1 = new Player(GameData.play1,1030,543,25,25,138,543,220,1030);

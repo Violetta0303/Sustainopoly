@@ -64,7 +64,9 @@ body .container .vega .vega-container li p {
   line-height: 20px;
   font-size: 20px;
   text-align: center;
-  color: red;
+  /* color: red; */
+  color: #000000;
+  font-weight: 700;
 }
 body .container .vega .vega-container li .Number {
   width: 100%;

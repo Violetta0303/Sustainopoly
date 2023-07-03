@@ -8,20 +8,23 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import static sustainopoly.EndGamePanelUtil.endFrame;
 import static sustainopoly.GameData.*;
+import static sustainopoly.StartGame.frame;
 
 
 /**
  * Initialize Panel
  */
-public class GamePanel extends JPanel implements ActionListener {
+public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
+    Dice myactionListener = new Dice();
 
     private JLabel j1, j2;
     public int Playpoint = 0;
@@ -31,13 +34,13 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public static GameData data = new GameData();
 
-    public static Events event = new Events();
-
-//    //Play the BGM
-//    PlayMusicUtil bgm = new PlayMusicUtil();
-
     Date start = new Date();
+
     public static long period = 0;
+    long t;
+    long pauseStart;
+    long pauseTime = 0;
+    long totalPauseTime = 0; // Record total pause time
 
     private static List<Icon> photo = new ArrayList<Icon>();
     Thread t1;
@@ -144,18 +147,18 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         }
 
-        drawTime(g);
+        draw(g);
 
         super.paintChildren(g);// Keep the button
 
     }
-
 
     /**
      * @param point is the points of Dice
      *              Move the Player
      */
     public void move(Player p, int point) {
+
         if (p.y == p.maxpy) {
             int squ1 = (p.x - p.minpx) / step;
             if ((squ1 - point) < 0) {
@@ -231,46 +234,106 @@ public class GamePanel extends JPanel implements ActionListener {
      */
     //
     public void events(Player p) {
+
         //Start
         if (p.x == p.maxpx && p.y == p.maxpy) {
             event.start(p);
         }
+
         //Store
-        if ((p.x == p.maxpx - (2 * step) && p.y == p.maxpy) || (p.x == p.minpx && p.y == p.maxpy - step)) {
+        if (p.x == p.maxpx - (2 * step) && p.y == p.maxpy) {
             event.store(p);
         }
+
         //Fate
-        if ((p.x == p.maxpx - (8 * step) && p.y == p.maxpy) || (p.x == p.maxpx && p.y == p.maxpy - step)) {
+        if ((p.x == p.maxpx - (8 * step) && p.y == p.maxpy)) {
             event.fate(p);
         }
-        //Mental Health Centre
-        if ((p.x == p.maxpx - (4 * step) && p.y == p.maxpy) || (p.x == p.maxpx - (6 * step) && p.y == p.minpy)) {
-            event.mentalhealthcentre(p);
+
+        //Take Charge Of1
+        if (p.x == p.maxpx - (5 * step) && p.y == p.maxpy) {
+            event.takechargeof1(p);
         }
-        //Activity Centre
-        if ((p.x == p.maxpx - (6 * step) && p.y == p.maxpy) || (p.x == p.minpx && p.y == p.maxpy - (3 * step))) {
-            event.activitycentre(p);
+
+        //Take Charge Of2
+        if (p.x == p.minpx && p.y == p.maxpy - (2 * step)) {
+            event.takechargeof2(p);
         }
-        //Food Bank
-        if ((p.x == p.minpx && p.y == p.maxpy) || (p.x == p.minpx + step && p.y == p.minpy)) {
-            event.foodbank(p);
+
+        //Take Charge Of3
+        if (p.x == p.maxpx - (4 * step) && p.y == p.minpy) {
+            event.takechargeof3(p);
+        }
+
+        //Take Charge Of4
+        if (p.x == p.maxpx && p.y == p.maxpy - step) {
+            event.takechargeof4(p);
+        }
+
+        //Mental Health Centre1
+        if (p.x == p.maxpx - (3 * step) && p.y == p.maxpy) {
+            event.mentalhealthcentre1(p);
+        }
+        if (p.x == p.maxpx - (6 * step) && p.y == p.minpy) {
+            event.mentalhealthcentre2(p);
+        }
+
+        //Activity Centre1
+        if (p.x == p.maxpx - (7 * step) && p.y == p.maxpy) {
+            event.activitycentre1(p);
+        }
+        //Activity Centre2
+        if (p.x == p.minpx && p.y == p.maxpy - (3 * step)) {
+            event.activitycentre2(p);
+        }
+
+        //Food Bank1
+        if (p.x == p.minpx && p.y == p.maxpy) {
+            event.foodbank1(p);
+        }
+        //Food Bank2
+        if (p.x == p.minpx + step && p.y == p.minpy) {
+            event.foodbank2(p);
+        }
+
+        //Market
+        if (p.x == p.minpx && p.y == p.minpy) {
+            event.market1(p);
         }
         //Market
-        if ((p.x == p.minpx && p.y == p.minpy) || (p.x == p.maxpx - (2 * step) && p.y == p.minpy)) {
-            event.market(p);
+        if (p.x == p.maxpx - (2 * step) && p.y == p.minpy) {
+            event.market2(p);
         }
+
         //Social Media
         if ((p.x == p.minpx + (3 * step) && p.y == p.minpy)) {
             event.socialmedia(p);
         }
-        //Community Radio
-        if ((p.x == p.maxpx - (3 * step) && p.y == p.minpy) || (p.x == p.maxpx && p.y == p.maxpy - (3 * step))) {
-            event.Radio(p);
+
+        //Community Radio1
+        if (p.x == p.maxpx - (3 * step) && p.y == p.minpy) {
+            event.Radio1(p);
         }
+        //Community Radio2
+        if (p.x == p.maxpx && p.y == p.maxpy - (3 * step)) {
+            event.Radio2(p);
+        }
+
         //Mosque
         if ((p.x == p.maxpx && p.y == p.minpy)) {
             event.mosque(p);
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 
     /**
@@ -278,30 +341,55 @@ public class GamePanel extends JPanel implements ActionListener {
      *
      * @param g paint
      */
-    public void drawTime(Graphics g) {
+    public void draw(Graphics g) {
+
         Color c = g.getColor();
         Font f = g.getFont();
 
+//        if (data.isPause == true) { // Pause
+//            g.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+//            g.setColor(new Color(115, 50, 50));
+//            g.drawString("Game Paused", 590, 450);
+//            Date d = new Date();
+//            pauseStart = System.currentTimeMillis(); // Record pause start time
+//            repaint();
+//        } else { // Continue
+//            g.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+//            if (pauseStart != 0) { // If the game was previously paused
+//                pauseTime = (System.currentTimeMillis() - pauseStart) / 1000; // Calculate pause time
+//                totalPauseTime += pauseTime; // Accumulate to total pause time
+//                pauseStart = 0; // Reset pause start time
+//            }
+//            period = (System.currentTimeMillis() - start.getTime()) / 1000 - totalPauseTime; // Minus total pause time
+//            repaint();
+//        }
+
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
         period = (System.currentTimeMillis() - start.getTime()) / 1000;
+        repaint();
+
+        g.setColor(Color.BLACK);
         g.drawString("Game Time: " + period, 780, 380);
+
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        g.setColor(new Color(169, 102, 102));
+        g.drawString("Turn: P" + turn, 622, 450);
+
         g.setFont(f);
-        g.setColor(c);
-        if (period >= 1200) {
+
+        //If all the tasks have been done, play the Easter Egg Animation
+        if (event.flag_MentalHealthCentre1 == 0 && event.flag_MentalHealthCentre2 == 0 && event.flag_FoodBank1 == 0
+                && event.flag_FoodBank2 == 0 && event.flag_ActivityCentre1 == 0 && event.flag_ActivityCentre2 == 0
+                && event.flag_Market1 == 0 && event.flag_Market2 == 0 && event.flag_SocialMedia == 0
+                && event.flag_Radio1 == 0 && event.flag_Radio2 == 0 && event.flag_Mosque == 0) {
+            frame.setVisible(false);
             EndGamePanelUtil.init();
-            StartGame.frame.setVisible(false);
-
-//            //Stop Playing the BGM
-//            bgm.interrupt();
-
             endFrame.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                    //Video Player Frame
-                    //Play the Easter Egg Animation
+                    endFrame.setVisible(false);
                     try {
                         VideoPlayerMain.init();
-//                        endFrame.setVisible(false);
                     } catch (UnsupportedLookAndFeelException e) {
                         throw new RuntimeException(e);
                     } catch (ClassNotFoundException e) {
@@ -313,6 +401,11 @@ public class GamePanel extends JPanel implements ActionListener {
                     }
                 }
             });
+        }
+
+        if (period >= 1800) {
+            frame.setVisible(false);
+            EndGamePanelUtil.init();
         }
     }
 
@@ -373,6 +466,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
 
     public GamePanel() {
+
         JButton jButton = new JButton();
         jButton.setBounds(620, 330, 90, 90);
         jButton.setIcon(GameData.dicemodel);
@@ -390,14 +484,14 @@ public class GamePanel extends JPanel implements ActionListener {
         this.add(JBPlayer01);
         this.add(idStr1);
 
-        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Comic Sans MS", Font.BOLD, 14)));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Comic Sans MS", Font.BOLD, 16)));
 
         JBPlayer01.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[0]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[0] + "\n\nEffort: " + Player1.effort +
-                                "\nLeadership: " + Player1.leadership + "\nProgramming Skills: " + Player1.program + "\nExperience: " + Player1.exp,
+                                "\nLeadership: " + Player1.leadership + "\nProgramming Skills: " + Player1.program + "\nExperience: " + Player1.exp + "\nTake Charge Of: " + Player1.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -419,7 +513,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[1]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[1] + "\n\nEffort: " + Player2.effort +
-                                "\nLeadership: " + Player2.leadership + "\nProgramming Skills: " + Player2.program + "\nExperience: " + Player2.exp,
+                                "\nLeadership: " + Player2.leadership + "\nProgramming Skills: " + Player2.program + "\nExperience: " + Player2.exp + "\nTake Charge Of: " + Player2.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -439,7 +533,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[2]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[2] + "\n\nEffort: " + Player3.effort +
-                                "\nLeadership: " + Player3.leadership + "\nProgramming Skills: " + Player3.program + "\nExperience: " + Player3.exp,
+                                "\nLeadership: " + Player3.leadership + "\nProgramming Skills: " + Player3.program + "\nExperience: " + Player3.exp + "\nTake Charge Of: " + Player3.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -460,7 +554,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[3]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[3] + "\n\nEffort: " + Player4.effort +
-                                "\nLeadership: " + Player4.leadership + "\nProgramming Skills: " + Player4.program + "\nExperience: " + Player4.exp,
+                                "\nLeadership: " + Player4.leadership + "\nProgramming Skills: " + Player4.program + "\nExperience: " + Player4.exp + "\nTake Charge Of: " + Player4.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -481,7 +575,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[4]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[4] + "\n\nEffort: " + Player5.effort +
-                                "\nLeadership: " + Player5.leadership + "\nProgramming Skills: " + Player5.program + "\nExperience: " + Player5.exp,
+                                "\nLeadership: " + Player5.leadership + "\nProgramming Skills: " + Player5.program + "\nExperience: " + Player5.exp + "\nTake Charge Of: " + Player5.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -503,7 +597,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[5]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[5] + "\n\nEffort: " + Player6.effort +
-                                "\nLeadership: " + Player6.leadership + "\nProgramming Skills: " + Player6.program + "\nExperience: " + Player6.exp,
+                                "\nLeadership: " + Player6.leadership + "\nProgramming Skills: " + Player6.program + "\nExperience: " + Player6.exp + "\nTake Charge Of: " + Player6.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -525,7 +619,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[6]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[6] + "\n\nEffort: " + Player7.effort +
-                                "\nLeadership: " + Player7.leadership + "\nProgramming Skills: " + Player7.program + "\nExperience: " + Player7.exp,
+                                "\nLeadership: " + Player7.leadership + "\nProgramming Skills: " + Player7.program + "\nExperience: " + Player7.exp + "\nTake Charge Of: " + Player7.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -547,7 +641,7 @@ public class GamePanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ImageIcon icon = FrameConfig.img[FrameConfig.selected[7]];
                 JOptionPane.showMessageDialog(null, "ID: " + FrameConfig.selectedName[7] + "\n\nEffort: " + Player8.effort +
-                                "\nLeadership: " + Player8.leadership + "\nProgramming Skills: " + Player8.program + "\nExperience: " + Player8.exp,
+                                "\nLeadership: " + Player8.leadership + "\nProgramming Skills: " + Player8.program + "\nExperience: " + Player8.exp + "\nTake Charge Of: " + Player8.own,
                         "Player Information", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         });
@@ -574,7 +668,7 @@ public class GamePanel extends JPanel implements ActionListener {
         IconThread iconThread1 = new IconThread(j1, photo);
         IconThread iconThread2 = new IconThread(j2, photo);
 
-        Dice myactionListener = new Dice();
+//        Dice myactionListener = new Dice();
         jButton.addActionListener(myactionListener);
 
         this.setFocusable(true);
@@ -593,6 +687,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+
+            PlayMusicUtil.play(data.throwdiceMusicUrl);
 
 //            thread();
             IconThread iconThread1 = new IconThread(j1, photo);

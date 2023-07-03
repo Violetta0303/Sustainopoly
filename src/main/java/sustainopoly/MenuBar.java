@@ -1,7 +1,5 @@
 package sustainopoly;
 
-//import sun.java2d.cmm.Profile;
-
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
@@ -10,14 +8,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Date;
 
 import static javax.swing.JOptionPane.*;
 import static sustainopoly.StartGame.gamePanel;
 
 /**
  * MenuBar
- *
- * @author Zoctan
  */
 public class MenuBar extends JMenuBar implements ActionListener {
     private JMenuItem openMenuItem;
@@ -25,7 +22,12 @@ public class MenuBar extends JMenuBar implements ActionListener {
     private JMenuItem exitMenuItem;
     private JMenuItem aboutMenuItem;
     private JCheckBoxMenuItem musicMenuItem;
+    private JCheckBoxMenuItem voiceAnnounceMenuItem;
+    private JMenuItem volumeMenuItem;
+    private JMenuItem rateMenuItem;
+    private JCheckBoxMenuItem pauseGameMenuItem;
     private PlayMusicUtil playMusicUtil;
+    public static VoiceAnnouncementsUtil voiceAnnouncementsUtil;
 
 
     public MenuBar() {
@@ -58,9 +60,21 @@ public class MenuBar extends JMenuBar implements ActionListener {
     public JMenu createSettingMenu() {
         JMenu menu = new Menu("Setting", this);
         menu.setMnemonic(KeyEvent.VK_S);
-        this.musicMenuItem = new JCheckBoxMenuItem("Background Music");
+        this.musicMenuItem = new JCheckBoxMenuItem("Background Music ON/OFF");
         this.musicMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK));
         menu.add(this.musicMenuItem);
+        this.voiceAnnounceMenuItem = new JCheckBoxMenuItem("Voice Announcement ON/OFF");
+        this.voiceAnnounceMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
+        menu.add(this.voiceAnnounceMenuItem);
+        this.volumeMenuItem = new JMenuItem("Voice Announcement Volume");
+        this.volumeMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+        menu.add(this.volumeMenuItem);
+        this.rateMenuItem = new JMenuItem("Voice Announcement Rate");
+        this.rateMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
+        menu.add(rateMenuItem);
+        this.pauseGameMenuItem = new JCheckBoxMenuItem("Pause/Continue the Game");
+        this.pauseGameMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+//        menu.add(pauseGameMenuItem);
         return menu;
     }
 
@@ -71,7 +85,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
         menu.add(this.aboutMenuItem);
         return menu;
     }
-
 
 
     @Override
@@ -86,8 +99,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
                     // Load Data
                     GamePanel.data = (GameData) IoUtil.readFromFile(chooseFile.getSelectedFile().getPath());
                     // Setting
-                    this.musicMenuItem.setState(gamePanel.data.isMusic);
+                    this.musicMenuItem.setState(GamePanel.data.isMusic);
                     this.onMusicChange();
+                    this.musicMenuItem.setState(GamePanel.data.isVoiceAnnounce);
+                    this.onVoiceAnnouceChange();
                     // Repaint the Game
                     gamePanel.repaint();
                 }
@@ -100,7 +115,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
                 int confirm = this.showDialog("confirm", "Save to the file: " + chooseFile.getName(f));
                 if (confirm == 0) {
                     // Save Data
-                    IoUtil.save2File(GamePanel.data, chooseFile.getSelectedFile().getPath());
+                    IoUtil.save2File(gamePanel.data, chooseFile.getSelectedFile().getPath());
                 }
             }
         } else if (event.getSource() == this.exitMenuItem) {
@@ -110,13 +125,33 @@ public class MenuBar extends JMenuBar implements ActionListener {
             }
         } else if (event.getSource() == this.musicMenuItem) {
             this.onMusicChange();
+        } else if (event.getSource() == this.voiceAnnounceMenuItem) {
+            this.onVoiceAnnouceChange();
+        } else if (event.getSource() == this.volumeMenuItem) {
+            String v = JOptionPane.showInputDialog(null, "Please input the volume you want (0 - 100)");
+            voiceAnnouncementsUtil.volume = Integer.parseInt(v);
+        } else if (event.getSource() == this.rateMenuItem) {
+            String r = JOptionPane.showInputDialog(null, "Please input the rate you want (-10 to +10)");
+            voiceAnnouncementsUtil.rate = Integer.parseInt(r);
+        } else if (event.getSource() == this.pauseGameMenuItem) {
+
+            if (gamePanel.data.isPause == false) {
+                gamePanel.data.isPause = true;
+                gamePanel.t = gamePanel.period;
+
+            } else {
+                gamePanel.data.isPause = false;
+
+                gamePanel.period = gamePanel.t;
+            }
+
         } else if (event.getSource() == this.aboutMenuItem) {
             showDialog("message", "<!DOCTYPE><html lang='en'><head><meta charset='utf-8'><style>.blue{color:blue}</style></head><body><span>Resource: <span class='blue'>https://www.ewb-uk.org/</body></html>");
         }
     }
 
     private int showDialog(String type, String content) {
-        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Comic Sans MS", Font.BOLD, 12)));
+        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Comic Sans MS", Font.BOLD, 14)));
 
         switch (type) {
             case "confirm":
@@ -148,6 +183,23 @@ public class MenuBar extends JMenuBar implements ActionListener {
                 this.playMusicUtil = null;
             }
             gamePanel.data.isMusic = false;
+        }
+    }
+
+    private void onVoiceAnnouceChange() {
+        //Voice Announcement
+        if (this.voiceAnnounceMenuItem.getState()) {
+            if (voiceAnnouncementsUtil == null) {
+                voiceAnnouncementsUtil = new VoiceAnnouncementsUtil();
+            }
+            voiceAnnouncementsUtil.start();
+            gamePanel.data.isVoiceAnnounce = true;
+        } else {
+            if (voiceAnnouncementsUtil != null) {
+                voiceAnnouncementsUtil.close();
+                voiceAnnouncementsUtil = null;
+            }
+            gamePanel.data.isVoiceAnnounce = false;
         }
     }
 }

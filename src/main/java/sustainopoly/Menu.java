@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 /**
  * Menu
- *
- * @author Zoctan
  */
 public class Menu extends JMenu {
     private ActionListener listener;

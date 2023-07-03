@@ -2,32 +2,71 @@ package sustainopoly;
 
 import java.applet.AudioClip;
 
+import javazoom.jl.decoder.JavaLayerException;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
 
 public class PlayMusicUtil extends Thread {
-    AudioClip player;
     String music;
+
+    static javazoom.jl.player.Player player;
+
+    static FileInputStream stream = null;
 
     public PlayMusicUtil(String music) {
         this.music = music;
     }
 
     public static void play(String music) {
+        File file = new File(music);
+        FileInputStream stream = null;
         try {
-            JApplet.newAudioClip(PlayMusicUtil.class.getResource(music)).play();
-        } catch (Exception e) {
-            e.printStackTrace();
+            stream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        javazoom.jl.player.Player player = null;
+        try {
+            player = new javazoom.jl.player.Player(stream);
+        } catch (JavaLayerException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            player.play();
+        } catch (JavaLayerException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void play() {
-        this.player = JApplet.newAudioClip(this.getClass().getResource(this.music));
-        this.player.loop();
+        File file = new File(music);
+        FileInputStream stream = null;
+        try {
+            stream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            player = new javazoom.jl.player.Player(stream);
+        } catch (JavaLayerException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            while (player != null) {
+                player.play();
+            }
+        } catch (JavaLayerException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void close() {
-        this.player.stop();
-        this.interrupt();
+    public static void close() {
+        if (player != null)
+            player.close();
     }
 
     @Override

@@ -221,6 +221,11 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
+
                 if (g == 8) {
                     //
                     leftButton01.setEnabled(false);
@@ -243,13 +248,27 @@ public class FrameConfig extends JFrame {
         jbnPlayerName01.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean checkName = true;
+
                 if (!jbnPlayerNameField01.getText().equals("")) {
                     selectedName[0] = jbnPlayerNameField01.getText();
-                    jbnPlayerNameField01.setEditable(false);
-                    jbnPlayerName01.setEnabled(false);
+                   for(int i = 0; i < 8;i++){
+                       if(i==0){
+                           continue;
+                       }
+                       if(selectedName[0].equals(selectedName[i])){
+                           checkName = false;
+                       }
+                   }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField01.setEditable(false);
+                        jbnPlayerName01.setEnabled(false);
+                    } else if (checkName == false){
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
                 }
-
             }
         });
 
@@ -317,6 +336,11 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
+
                 if (g == 8) {
 
                     leftButton02.setEnabled(false);
@@ -341,9 +365,23 @@ public class FrameConfig extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField02.getText().equals("")) {
                     selectedName[1] = jbnPlayerNameField02.getText();
-                    jbnPlayerNameField02.setEditable(false);
-                    jbnPlayerName02.setEnabled(false);
+                    boolean checkName = true;
 
+                    for(int i = 0; i < 8;i++){
+                        if(i==1){
+                            continue;
+                        }
+                        if(selectedName[1].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField02.setEditable(false);
+                        jbnPlayerName02.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
 
             }
@@ -362,15 +400,15 @@ public class FrameConfig extends JFrame {
      * P3
      */
     private void addPlayer03Config(int x, int y, JPanel jp) {
-        //
+
         jlPlayer03Choose = new JLabel(img[chooses[2]]);
         jlPlayer03Choose.setBounds(x + 8, y, 128, 128);
-        //
+
         jlPlayer03Selected.setBounds(x + 8, y, 128, 128);
         jlPlayer03Selected.setVisible(false);
-        //
+
         leftButton03 = this.createButton(x, 92 + y, Photo.BUTTON_LEFT, 'a');
-        //
+
         leftButton03.addActionListener(new ActionListener() {
 
             @Override
@@ -384,10 +422,10 @@ public class FrameConfig extends JFrame {
         });
 
         jp.add(leftButton03);
-        //
+
         rightButton03 = this.createButton(128 + x, 92 + y, Photo.BUTTON_RIGHT,
                 'd');
-        //
+
         rightButton03.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -399,9 +437,9 @@ public class FrameConfig extends JFrame {
             }
         });
         jp.add(rightButton03);
-        //
+
         jbnPlayer03.setBounds(x, 128 + y, 145, 30);
-        //
+
         jbnPlayer03.addActionListener(new ActionListener() {
 
             @Override
@@ -412,12 +450,16 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
+
                 if (g == 8) {
-                    //
+
                     leftButton03.setEnabled(false);
                     rightButton03.setEnabled(false);
                     jbnPlayer03.setEnabled(false);
-                    //
+
                     jlPlayer03Selected.setVisible(true);
                     selected[2] = chooses[2];
                 }
@@ -426,19 +468,32 @@ public class FrameConfig extends JFrame {
         jp.add(jbnPlayer03);
         jp.add(jlPlayer03Selected);
         jp.add(jlPlayer03Choose);
-        //
+
         jbnPlayerNameLabel03.setBounds(x + 6, y + 128 + 36, 50, 30);
         jbnPlayerNameField03.setBounds(x + 12 + 30, y + 128 + 36, 120 - 30, 30);
         jbnPlayerName03.setBounds(x, y + 128 + 36 + 36, 145, 30);
-        //
+
         jbnPlayerName03.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField03.getText().equals("")) {
                     selectedName[2] = jbnPlayerNameField03.getText();
-                    jbnPlayerNameField03.setEditable(false);
-                    jbnPlayerName03.setEnabled(false);
+                    boolean checkName = true;
+                    for(int i = 0; i < 8;i++){
+                        if(i==2){
+                            continue;
+                        }
+                        if(selectedName[2].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
 
+                    if(checkName == true) {
+                        jbnPlayerNameField03.setEditable(false);
+                        jbnPlayerName03.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
 
             }
@@ -507,6 +562,10 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
                 if (g == 8) {
 
                     leftButton04.setEnabled(false);
@@ -531,8 +590,22 @@ public class FrameConfig extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField04.getText().equals("")) {
                     selectedName[3] = jbnPlayerNameField04.getText();
-                    jbnPlayerNameField04.setEditable(false);
-                    jbnPlayerName04.setEnabled(false);
+                    boolean checkName = true;
+                    for(int i = 0; i < 8;i++){
+                        if(i==3){
+                            continue;
+                        }
+                        if(selectedName[3].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField04.setEditable(false);
+                        jbnPlayerName04.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
                 }
 
@@ -602,6 +675,9 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
 
                    if (g == 8) {
                        //
@@ -629,8 +705,22 @@ public class FrameConfig extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField05.getText().equals("")) {
                     selectedName[4] = jbnPlayerNameField05.getText();
-                    jbnPlayerNameField05.setEditable(false);
-                    jbnPlayerName05.setEnabled(false);
+                    boolean checkName = true;
+                    for(int i = 0; i < 8;i++){
+                        if(i==4){
+                            continue;
+                        }
+                        if(selectedName[4].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField05.setEditable(false);
+                        jbnPlayerName05.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
                 }
 
@@ -700,6 +790,9 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
 
                 if (g == 8) {
                     //
@@ -725,8 +818,22 @@ public class FrameConfig extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField06.getText().equals("")) {
                     selectedName[5] = jbnPlayerNameField06.getText();
-                    jbnPlayerNameField06.setEditable(false);
-                    jbnPlayerName06.setEnabled(false);
+                    boolean checkName = true;
+                    for(int i = 0; i < 8;i++){
+                        if(i==5){
+                            continue;
+                        }
+                        if(selectedName[5].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField06.setEditable(false);
+                        jbnPlayerName06.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
                 }
 
@@ -768,14 +875,14 @@ public class FrameConfig extends JFrame {
         });
 
         jp.add(leftButton07);
-        //
+
         rightButton07 = this.createButton(128 + x, 92 + y, Photo.BUTTON_RIGHT,
                 'd');
-        //
+
         rightButton07.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                // ???????
+
                 if (chooses[6] >= img.length - 1) {
                     chooses[6] = -1;
                 }
@@ -783,9 +890,9 @@ public class FrameConfig extends JFrame {
             }
         });
         jp.add(rightButton07);
-        //
+
         jbnPlayer07.setBounds(x, 128 + y, 145, 30); //?????
-        //
+
         jbnPlayer07.addActionListener(new ActionListener() {
 
             @Override
@@ -796,12 +903,16 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
                 if (g == 8) {
-                    //
+
                     leftButton07.setEnabled(false);
                     rightButton07.setEnabled(false);
                     jbnPlayer07.setEnabled(false);
-                    //
+
                     jlPlayer07Selected.setVisible(true);
                     selected[6] = chooses[6];
                 }
@@ -810,18 +921,32 @@ public class FrameConfig extends JFrame {
         jp.add(jbnPlayer07);
         jp.add(jlPlayer07Selected);
         jp.add(jlPlayer07Choose);
-        //
+
         jbnPlayerNameLabel07.setBounds(x + 6, y + 128 + 36, 50, 30);
         jbnPlayerNameField07.setBounds(x + 12 + 30, y + 128 + 36, 120 - 30, 30);
         jbnPlayerName07.setBounds(x, y + 128 + 36 + 36, 145, 30);
-        //
+
         jbnPlayerName07.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField07.getText().equals("")) {
                     selectedName[6] = jbnPlayerNameField07.getText();
-                    jbnPlayerNameField07.setEditable(false);
-                    jbnPlayerName07.setEnabled(false);
+                    boolean checkName = true;
+                    for(int i = 0; i < 8;i++){
+                        if(i==6){
+                            continue;
+                        }
+                        if(selectedName[6].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField07.setEditable(false);
+                        jbnPlayerName07.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
                 }
 
@@ -841,36 +966,36 @@ public class FrameConfig extends JFrame {
      * P8
      */
     private void addPlayer08Config(int x, int y, JPanel jp) {
-        //
+
         jlPlayer08Choose = new JLabel(img[chooses[7]]);  //
         jlPlayer08Choose.setBounds(x + 8, y, 128, 128);
-        //
+
         jlPlayer08Selected.setBounds(x + 8, y, 128, 128);
         jlPlayer08Selected.setVisible(false);  //
-        //
+
         leftButton08 = this.createButton(x, 92 + y, Photo.BUTTON_LEFT, 'a'); //
-        //
+
         leftButton08.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //
-                if (chooses[7] <= 0) { //
-                    chooses[7] = img.length; //
+
+                if (chooses[7] <= 0) {
+                    chooses[7] = img.length;
                 }
-                jlPlayer08Choose.setIcon(img[--chooses[7]]); //
+                jlPlayer08Choose.setIcon(img[--chooses[7]]);
             }
         });
 
         jp.add(leftButton08);
-        //
+
         rightButton08 = this.createButton(128 + x, 92 + y, Photo.BUTTON_RIGHT,
                 'd');
-        //
+
         rightButton08.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                //
+
                 if (chooses[7] >= img.length - 1) {
                     chooses[7] = -1;
                 }
@@ -878,9 +1003,9 @@ public class FrameConfig extends JFrame {
             }
         });
         jp.add(rightButton08);
-        //
+
         jbnPlayer08.setBounds(x, 128 + y, 145, 30); //
-        //
+
         jbnPlayer08.addActionListener(new ActionListener() {
 
             @Override
@@ -891,12 +1016,15 @@ public class FrameConfig extends JFrame {
                         g++;
                     }
                 }
+                if( g != 8){
+                    JOptionPane.showMessageDialog(null,"All Players' avatar should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                }
                 if (g == 8) {
-                    //
+
                     leftButton08.setEnabled(false);
                     rightButton08.setEnabled(false);
                     jbnPlayer08.setEnabled(false);
-                    //
+
                     jlPlayer08Selected.setVisible(true);
                     selected[7] = chooses[7];
                 }
@@ -905,18 +1033,32 @@ public class FrameConfig extends JFrame {
         jp.add(jbnPlayer08);
         jp.add(jlPlayer08Selected);
         jp.add(jlPlayer08Choose);
-        //
+
         jbnPlayerNameLabel08.setBounds(x + 6, y + 128 + 36, 50, 30);
         jbnPlayerNameField08.setBounds(x + 12 + 30, y + 128 + 36, 120 - 30, 30);
         jbnPlayerName08.setBounds(x, y + 128 + 36 + 36, 145, 30);
-        //
+
         jbnPlayerName08.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!jbnPlayerNameField08.getText().equals("")) {
                     selectedName[7] = jbnPlayerNameField08.getText();
-                    jbnPlayerNameField08.setEditable(false);
-                    jbnPlayerName08.setEnabled(false);
+                    boolean checkName = true;
+                    for(int i = 0; i < 8;i++){
+                        if(i==7){
+                            continue;
+                        }
+                        if(selectedName[7].equals(selectedName[i])){
+                            checkName = false;
+                        }
+                    }
+
+                    if(checkName == true) {
+                        jbnPlayerNameField08.setEditable(false);
+                        jbnPlayerName08.setEnabled(false);
+                    } else{
+                        JOptionPane.showMessageDialog(null,"All Players' Name should be different","Attention",JOptionPane.INFORMATION_MESSAGE);
+                    }
 
                 }
 
@@ -932,6 +1074,98 @@ public class FrameConfig extends JFrame {
         jbnPlayerName08.setFont(f);
     }
 
+    public void reLoad() {
+        leftButton01.setEnabled(true);
+        rightButton01.setEnabled(true);
+        jbnPlayer01.setEnabled(true);
+        jlPlayer01Selected.setVisible(false);
+        jlPlayer01Choose.setIcon(img[0]);
+        jbnPlayerNameField01.setText("");
+        jbnPlayerNameField01.setEditable(true);
+        jbnPlayerName01.setEnabled(true);
+        selected[0] = -1;
+        chooses[0] = 0;
+
+        leftButton02.setEnabled(true);
+        rightButton02.setEnabled(true);
+        jbnPlayer02.setEnabled(true);
+        jlPlayer02Selected.setVisible(false);
+        jlPlayer02Choose.setIcon(img[0]);
+        jbnPlayerNameField02.setText("");
+        jbnPlayerNameField02.setEditable(true);
+        jbnPlayerName02.setEnabled(true);
+        selected[1] = -2;
+        chooses[1] = 0;
+
+        leftButton03.setEnabled(true);
+        rightButton03.setEnabled(true);
+        jbnPlayer03.setEnabled(true);
+        jlPlayer03Selected.setVisible(false);
+        jlPlayer03Choose.setIcon(img[0]);
+        jbnPlayerNameField03.setText("");
+        jbnPlayerNameField03.setEditable(true);
+        jbnPlayerName03.setEnabled(true);
+        selected[2] = -3;
+        chooses[2] = 0;
+
+        leftButton04.setEnabled(true);
+        rightButton04.setEnabled(true);
+        jbnPlayer04.setEnabled(true);
+        jlPlayer04Selected.setVisible(false);
+        jlPlayer04Choose.setIcon(img[0]);
+        jbnPlayerNameField04.setText("");
+        jbnPlayerNameField04.setEditable(true);
+        jbnPlayerName04.setEnabled(true);
+        selected[3] = -4;
+        chooses[3] = 0;
+
+        leftButton05.setEnabled(true);
+        rightButton05.setEnabled(true);
+        jbnPlayer05.setEnabled(true);
+        jlPlayer05Selected.setVisible(false);
+        jlPlayer05Choose.setIcon(img[0]);
+        jbnPlayerNameField05.setText("");
+        jbnPlayerNameField05.setEditable(true);
+        jbnPlayerName05.setEnabled(true);
+        selected[4] = -5;
+        chooses[4] = 0;
+
+        leftButton06.setEnabled(true);
+        rightButton06.setEnabled(true);
+        jbnPlayer06.setEnabled(true);
+        jlPlayer06Selected.setVisible(false);
+        jlPlayer06Choose.setIcon(img[0]);
+        jbnPlayerNameField06.setText("");
+        jbnPlayerNameField06.setEditable(true);
+        jbnPlayerName06.setEnabled(true);
+        selected[5] = -6;
+        chooses[5] = 0;
+
+        leftButton07.setEnabled(true);
+        rightButton07.setEnabled(true);
+        jbnPlayer07.setEnabled(true);
+        jlPlayer07Selected.setVisible(false);
+        jlPlayer07Choose.setIcon(img[0]);
+        jbnPlayerNameField07.setText("");
+        jbnPlayerNameField07.setEditable(true);
+        jbnPlayerName07.setEnabled(true);
+        selected[6] = -7;
+        chooses[6] = 0;
+
+        leftButton08.setEnabled(true);
+        rightButton08.setEnabled(true);
+        jbnPlayer08.setEnabled(true);
+        jlPlayer08Selected.setVisible(false);
+        jlPlayer08Choose.setIcon(img[0]);
+        jbnPlayerNameField08.setText("");
+        jbnPlayerNameField08.setEditable(true);
+        jbnPlayerName08.setEnabled(true);
+        selected[7] = -8;
+        chooses[7] = 0;
+
+        repaint();
+    }
+
 
     private void addCancelButton(JPanel panel) {
         jbnCancel.addActionListener(new ActionListener() {
@@ -941,100 +1175,7 @@ public class FrameConfig extends JFrame {
                 reLoad();
             }
 
-            /**
-             *
-             */
-            private void reLoad() {
-                leftButton01.setEnabled(true);
-                rightButton01.setEnabled(true);
-                jbnPlayer01.setEnabled(true);
-                jlPlayer01Selected.setVisible(false);
-                jlPlayer01Choose.setIcon(img[0]);
-                jbnPlayerNameField01.setText("");
-                jbnPlayerNameField01.setEditable(true);
-                jbnPlayerName01.setEnabled(true);
-                selected[0] = -1;
-                chooses[0] = 0;
 
-                leftButton02.setEnabled(true);
-                rightButton02.setEnabled(true);
-                jbnPlayer02.setEnabled(true);
-                jlPlayer02Selected.setVisible(false);
-                jlPlayer02Choose.setIcon(img[0]);
-                jbnPlayerNameField02.setText("");
-                jbnPlayerNameField02.setEditable(true);
-                jbnPlayerName02.setEnabled(true);
-                selected[1] = -2;
-                chooses[1] = 0;
-
-                leftButton03.setEnabled(true);
-                rightButton03.setEnabled(true);
-                jbnPlayer03.setEnabled(true);
-                jlPlayer03Selected.setVisible(false);
-                jlPlayer03Choose.setIcon(img[0]);
-                jbnPlayerNameField03.setText("");
-                jbnPlayerNameField03.setEditable(true);
-                jbnPlayerName03.setEnabled(true);
-                selected[2] = -3;
-                chooses[2] = 0;
-
-                leftButton04.setEnabled(true);
-                rightButton04.setEnabled(true);
-                jbnPlayer04.setEnabled(true);
-                jlPlayer04Selected.setVisible(false);
-                jlPlayer04Choose.setIcon(img[0]);
-                jbnPlayerNameField04.setText("");
-                jbnPlayerNameField04.setEditable(true);
-                jbnPlayerName04.setEnabled(true);
-                selected[3] = -4;
-                chooses[3] = 0;
-
-                leftButton05.setEnabled(true);
-                rightButton05.setEnabled(true);
-                jbnPlayer05.setEnabled(true);
-                jlPlayer05Selected.setVisible(false);
-                jlPlayer05Choose.setIcon(img[0]);
-                jbnPlayerNameField05.setText("");
-                jbnPlayerNameField05.setEditable(true);
-                jbnPlayerName05.setEnabled(true);
-                selected[4] = -5;
-                chooses[4] = 0;
-
-                leftButton06.setEnabled(true);
-                rightButton06.setEnabled(true);
-                jbnPlayer06.setEnabled(true);
-                jlPlayer06Selected.setVisible(false);
-                jlPlayer06Choose.setIcon(img[0]);
-                jbnPlayerNameField06.setText("");
-                jbnPlayerNameField06.setEditable(true);
-                jbnPlayerName06.setEnabled(true);
-                selected[5] = -6;
-                chooses[5] = 0;
-
-                leftButton07.setEnabled(true);
-                rightButton07.setEnabled(true);
-                jbnPlayer07.setEnabled(true);
-                jlPlayer07Selected.setVisible(false);
-                jlPlayer07Choose.setIcon(img[0]);
-                jbnPlayerNameField07.setText("");
-                jbnPlayerNameField07.setEditable(true);
-                jbnPlayerName07.setEnabled(true);
-                selected[6] = -7;
-                chooses[6] = 0;
-
-                leftButton08.setEnabled(true);
-                rightButton08.setEnabled(true);
-                jbnPlayer08.setEnabled(true);
-                jlPlayer08Selected.setVisible(false);
-                jlPlayer08Choose.setIcon(img[0]);
-                jbnPlayerNameField08.setText("");
-                jbnPlayerNameField08.setEditable(true);
-                jbnPlayerName08.setEnabled(true);
-                selected[7] = -8;
-                chooses[7] = 0;
-
-                repaint();
-            }
         });
 //        jbnCancel.setBounds(656 + 7, 635, 120, 30);
         jbnCancel.setBounds(570 + 7, 480, 120, 30);
@@ -1043,11 +1184,9 @@ public class FrameConfig extends JFrame {
         jbnCancel.setFont(f);
     }
 
-
-    /**
-     *
-     */
     private JPanel createPlayerSelectPanel() {
+        Locale.setDefault(Locale.ENGLISH);
+
         JPanel jp = new JPanel(){
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -1073,24 +1212,23 @@ public class FrameConfig extends JFrame {
         addPlayer07Config(412, 235, jp);
         // P8
         addPlayer08Config(612, 235, jp);
-//
+
         addCancelButton(jp);
         return jp;
     }
 
-    /**
-     *
-     */
     private JPanel createButtonPanel() {
+        Locale.setDefault(Locale.ENGLISH);
+
         JPanel jp = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Comic Sans MS", Font.BOLD, 14)));
 
-        //
         jbnStart.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (selected[0] < 0 || selected[1] < 0 ||selected[2]<0||selected[3]<0||selected[4]<0||selected[5]<0||selected[6]<0||selected[7]<0) {
                     JOptionPane.showMessageDialog(null, "Please check your information","Attention",JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -1105,7 +1243,6 @@ public class FrameConfig extends JFrame {
                                 public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                                     //Game Frame
                                     new StartGame().init();
-//                                    videoPlayerFrame.setVisible(false);
                                 }
                             });
                         } catch (UnsupportedLookAndFeelException ex) {
@@ -1128,7 +1265,6 @@ public class FrameConfig extends JFrame {
         jbnStart.setFont(f);
         return jp;
     }
-
 
     public void init() {
         Locale.setDefault(Locale.ENGLISH);
@@ -1153,14 +1289,4 @@ public class FrameConfig extends JFrame {
         jf.setVisible(true);
     }
 
-//    public static void main() {
-//        Locale.setDefault(Locale.ENGLISH);
-//
-//        try {
-//            UIManager.setLookAndFeel(new FlatLightLaf());
-//        } catch (Exception ex) {
-//            System.err.println("Failed to initialize Laf");
-//        }
-//        new FrameConfig().init();
-//    }
 }

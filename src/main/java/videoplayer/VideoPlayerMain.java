@@ -8,8 +8,6 @@ import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 import javax.swing.*;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-
 public class VideoPlayerMain {
     public static VideoPlayerWindow videoPlayerFrame;
 

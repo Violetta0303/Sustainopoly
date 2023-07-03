@@ -5,12 +5,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 
 /**
  *  Get pictures
  */
-public class GameUtil {
+public class GameUtil implements Serializable {
     public static Image getImage(String path) {
        BufferedImage img = null;
 

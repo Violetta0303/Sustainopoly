@@ -4,20 +4,47 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 
+/**
+ * Open Web Page
+ */
 public class OpenWebPage {
 
-    public static void main(String[] args) {
-        // index.html文件在项目根目录下
-        String filePath = "src/main/java/webresources/MentalHealth/index.html";
-        // 获取文件对象
+    /**
+     * After finishing all the tasks in the Mental Health Centre, open the Mental Health Web Page
+     */
+    public static void openMentalHealth() {
+        // index.html is in the project root directory
+        String filePath = "src/main/java/Mental Health/index.html";
+        // Get File
         File file = new File(filePath);
 
         try {
-            // 创建URI对象
+            // Create URI Object
             URI uri = file.toURI();
-            // 获取桌面对象
+            // Get Desktop Object
             Desktop desktop = Desktop.getDesktop();
-            // 打开网页
+            // Open the Web Page
+            desktop.browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * After finishing all the tasks in the Mental Health Centre, open the Food Bank Web Page
+     */
+    public static void openFoodBank() {
+        // index.html is in the project root directory
+        String filePath = "src/main/java/Food Bank/index.html";
+        // Get File
+        File file = new File(filePath);
+
+        try {
+            // Create URI Object
+            URI uri = file.toURI();
+            // Get Desktop Object
+            Desktop desktop = Desktop.getDesktop();
+            // Open the Web Page
             desktop.browse(uri);
         } catch (Exception e) {
             e.printStackTrace();

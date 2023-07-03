@@ -1,8 +1,6 @@
 package login_register;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import playersInformation.FrameConfig;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Locale;
 import javax.swing.*;
 
-public class Login_Register extends JFrame{
+public class LoginRegister extends JFrame{
 
     Font f;
 
@@ -30,7 +28,7 @@ public class Login_Register extends JFrame{
 
     ImageIcon image;
 
-    Login_Register() {
+    LoginRegister() {
         init();
     }
     //Initialise the login interface
@@ -140,6 +138,6 @@ public class Login_Register extends JFrame{
         }
 
         //Login Window
-        Login_Register login_register = new Login_Register();
+        LoginRegister login_register = new LoginRegister();
     }
 }

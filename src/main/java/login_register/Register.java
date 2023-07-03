@@ -1,9 +1,6 @@
 package login_register;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 import javax.swing.JOptionPane;
 
@@ -11,7 +8,13 @@ public class Register {
     String name;
     String ID;
     String password;
-    String confirmpassword;
+    String confirmPassword;
+
+    Admin admin;
+
+    void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
 
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/sustainopoly";
@@ -21,49 +24,65 @@ public class Register {
     void setName(String name) {
         this.name = name;
     }
+
     void setID(String ID) {
         this.ID = ID;
     }
+
     void setPassword(String password) {
         this.password = password;
     }
-    void setconfirmpasswd(String confirmpassword) {
-        this.confirmpassword = confirmpassword;
+
+    void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
+    boolean judgeRegister() throws SQLException, ClassNotFoundException {
 
-    //Determine whether a registered account complies with the rules
-    boolean JudgeRegister() throws SQLException, ClassNotFoundException {
-
-        if(this.name.equals("")) {
+        if (this.name.equals("")) {
             JOptionPane.showMessageDialog(null, "Name cannot be empty!", "Name is empty", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
-        if(this.ID.equals("")) {
+        if (this.ID.equals("")) {
             JOptionPane.showMessageDialog(null, "ID cannot be empty!", "ID is empty", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
-        if(this.password.equals("")) {
+        if (this.password.equals("")) {
             JOptionPane.showMessageDialog(null, "Password cannot be empty", "Password is empty", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
-        if(!this.password.equals(this.confirmpassword)) {
+        if (!this.password.equals(this.confirmPassword)) {
             JOptionPane.showMessageDialog(null, "The passwords entered twice do not match!", "Inconsistent passwords", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
-        //Comply with the rules, pop up the registration success window and add the account to the database
+        String sql = "SELECT * FROM admin WHERE id = ?";
+
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(url, user, sqlpassword);
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1, this.ID);
+        ResultSet rs = ps.executeQuery();
+        boolean alreadyExists = rs.next();
+        rs.close();
+        ps.close();
+        conn.close();
+        if (alreadyExists) {
+            JOptionPane.showMessageDialog(null, "ID already exists", "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         JOptionPane.showMessageDialog(null, "Register successfully");
         addAdmin();
         return true;
     }
 
-    //Add an Admin account to the database
     void addAdmin() throws ClassNotFoundException, SQLException {
-        String sql="insert into admin (id, name, password) values (?,?,MD5(?))";
+        String sql = "INSERT INTO admin (id, name, password) VALUES (?, ?, MD5(?))";
         Class.forName(driver);
         try {
             Connection conn = DriverManager.getConnection(url, user, sqlpassword);
@@ -75,7 +94,7 @@ public class Register {
             ps.close();
             conn.close();
 
-        }catch(SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Failed to add a user!");
         }
 

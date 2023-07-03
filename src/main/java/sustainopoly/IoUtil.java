@@ -1,31 +1,48 @@
 package sustainopoly;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
- * IO 工具
- *
- * @author Zoctan
+ * IO Util
  */
 public class IoUtil {
 
     public static void save2File(Object object, String path) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
+        ObjectOutputStream oos = null;
+        try  {
+            oos = new ObjectOutputStream(new FileOutputStream(path));
             oos.writeObject(object);
+            oos.flush();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if(oos!=null){
+                    oos.close();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
     public static Object readFromFile(String path) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) {
+        ObjectInputStream ois = null;
+        try  {
+            ois = new ObjectInputStream(new FileInputStream(path));
             return ois.readObject();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }finally {
+            try {
+                if (ois!=null){
+                    ois.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
     }
 }

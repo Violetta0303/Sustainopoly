@@ -7,8 +7,10 @@ import videoplayer.VideoPlayerMain;
 import javax.swing.*;
 import java.awt.*;
 
+import static sustainopoly.EndGamePanelUtil.endFrame;
 import static sustainopoly.GameData.*;
-import static sustainopoly.GamePanel.event;
+import static sustainopoly.StartGame.gamePanel;
+//import static sustainopoly.GamePanel.event;
 
 public class GameOver extends JPanel {
 
@@ -17,21 +19,22 @@ public class GameOver extends JPanel {
         draw(g);
         super.paintChildren(g);
     }
+
     Player[] players = {Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8};
 
     JLabel jLabel1 = new JLabel();
-    JLabel jLabel2= new JLabel();
-    JLabel jLabel3= new JLabel();
-    JLabel jLabel4= new JLabel();
-    JLabel jLabel5= new JLabel();
-    JLabel jLabel6= new JLabel();
-    JLabel jLabel7= new JLabel();
-    JLabel jLabel8= new JLabel();
+    JLabel jLabel2 = new JLabel();
+    JLabel jLabel3 = new JLabel();
+    JLabel jLabel4 = new JLabel();
+    JLabel jLabel5 = new JLabel();
+    JLabel jLabel6 = new JLabel();
+    JLabel jLabel7 = new JLabel();
+    JLabel jLabel8 = new JLabel();
 
     public void rank() {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7 - i; j++) {
-                if ((players[j].leadership+players[j].program+players[j].exp) < (players[j+1].leadership+players[j+1].program+players[j+1].exp)) {
+                if ((players[j].leadership + players[j].program + players[j].exp) < (players[j + 1].leadership + players[j + 1].program + players[j + 1].exp)) {
                     Player p_tmp;
                     p_tmp = players[j];
                     players[j] = players[j + 1];
@@ -46,8 +49,8 @@ public class GameOver extends JPanel {
                     id_tmp = FrameConfig.selectedName[j];
                     FrameConfig.selectedName[j] = FrameConfig.selectedName[j + 1];
                     FrameConfig.selectedName[j + 1] = id_tmp;
-                }else if((players[j].leadership+players[j].program+players[j].exp) == (players[j+1].leadership+players[j+1].program+players[j+1].exp)){
-                    if(players[j].effort<players[j+1].effort){
+                } else if ((players[j].leadership + players[j].program + players[j].exp) == (players[j + 1].leadership + players[j + 1].program + players[j + 1].exp)) {
+                    if (players[j].effort < players[j + 1].effort) {
                         Player p_tmp;
                         p_tmp = players[j];
                         players[j] = players[j + 1];
@@ -202,26 +205,29 @@ public class GameOver extends JPanel {
 
         jLabel8.setBounds(590, 590, 110, 110);
         this.add(jLabel8);
-
-        playEasterEgg();
     }
 
-    public void playEasterEgg() {
-        //If all the tasks have been done, play the Easter Egg Animation
-        if (event.flag_MentalHealthCentre == 0 && event.flag_FoodBank == 0 && event.flag_ActivityCentre == 0
-                && event.flag_Market == 0 && event.flag_SocialMedia == 0 && event.flag_Radio == 0) {
-            try {
-                VideoPlayerMain.init();
-            } catch (UnsupportedLookAndFeelException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
+//    public static void playEasterEgg() {
+////        EndGamePanelUtil.init();
+//        gamePanel.setVisible(false);
+//        endFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+//            @Override
+//            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+//                //Video Player Frame
+//                //Play the Easter Egg Animation
+//                try {
+//                    VideoPlayerMain.init();
+////                        endFrame.setVisible(false);
+//                } catch (UnsupportedLookAndFeelException e) {
+//                    throw new RuntimeException(e);
+//                } catch (ClassNotFoundException e) {
+//                    throw new RuntimeException(e);
+//                } catch (InstantiationException e) {
+//                    throw new RuntimeException(e);
+//                } catch (IllegalAccessException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        });
+//    }
 }

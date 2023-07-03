@@ -7,12 +7,13 @@ import videoplayer.VideoPlayerMain;
 import videoplayer.VideoPlayerWindow;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.Locale;
 
-import static sustainopoly.GameData.Player1;
-import static sustainopoly.GamePanel.event;
-import static sustainopoly.GamePanel.period;
+import static sustainopoly.GameData.*;
+//import static sustainopoly.GamePanel.event;
 
 /**
  * Initialize Frame
@@ -50,13 +51,8 @@ public class StartGame extends JFrame {
 
         frame.setVisible(true);
 
-
-        if (event.flag_MentalHealthCentre == 0 && event.flag_FoodBank == 0 && event.flag_ActivityCentre == 0
-                && event.flag_Market == 0 && event.flag_SocialMedia == 0 && event.flag_Radio == 0) {
-            EndGamePanelUtil.init();
-            frame.setVisible(false);
-        }
-//        else if (gamePanel.period >= 1200) {
+//        if (event.flag_MentalHealthCentre == 0 && event.flag_FoodBank == 0 && event.flag_ActivityCentre == 0
+//                && event.flag_Market == 0 && event.flag_SocialMedia == 0 && event.flag_Radio == 0) {
 //            EndGamePanelUtil.init();
 //            frame.setVisible(false);
 //        }

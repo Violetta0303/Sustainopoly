@@ -1,8 +1,9 @@
 package sustainopoly;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Player extends GameObject {
+public class Player extends GameObject implements Serializable {
 
     /**
      * ID
@@ -17,28 +18,27 @@ public class Player extends GameObject {
     /**
      * Effort
      */
-    public int effort = 50;
+    public int effort = 100;
 
     /**
      * Leadership
      */
-    public int leadership = 20;
+    public int leadership = 50;
 
     /**
      * Programming Skills
      */
-    public int program = 20;
+    public int program = 50;
 
     /**
      * Experience
      */
     public int exp = 0;
 
-//    /**
-//     * Score
-//     */
-//    public int score = leadership + program + exp;
-
+    /**
+     * Take Charge Of
+     */
+    public String own = "";
 
     @Override
     public void drawMyself(Graphics g) {
