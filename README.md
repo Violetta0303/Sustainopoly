@@ -7,41 +7,45 @@ Sustainopoly is a Java-based game inspired by Monopoly, designed to address sust
 ## 🎯 Sustainable Development Goals
 
 The game aims to address several UN Sustainable Development Goals:
-- 1 No Poverty
-- 2 Zero Hunger
-- 3 Good Health and Well Being
-- 4 Quality Education
-- 8 Decent Work and Economic Growth
-- 9 Industry, Innovation and Infrastructure
-- 10 Reduced Inequalities
-- 11 Sustainable Cities and Communities
-- 12 Responsible Consumption and Production
-- 17 Partnerships for the Goals
+
+* 1 No Poverty
+* 2 Zero Hunger
+* 3 Good Health and Well Being
+* 4 Quality Education
+* 8 Decent Work and Economic Growth
+* 9 Industry, Innovation and Infrastructure
+* 10 Reduced Inequalities
+* 11 Sustainable Cities and Communities
+* 12 Responsible Consumption and Production
+* 17 Partnerships for the Goals
 
 ## 🎮 Game Features
 
-- **Regional Gameplay**: Navigate through 6 distinct geographical regions of Govan:
-  - Ibrox
-  - Plantation
-  - Cessnock
-  - Kinning Park
-  - Kingston
-  - Tradeston
+* **Regional Gameplay**: Navigate through 6 distinct geographical regions of Govan:
 
-- **Dice-based Movement**: Roll two dice to determine your movement across the game board
-  
-- **Multiple Interaction Types**:
-  - Make decisions that affect the community
-  - Exchange character attributes/resources
-  - Accept and complete tasks
-  - Encounter random events
+  * Ibrox
+  * Plantation
+  * Cessnock
+  * Kinning Park
+  * Kingston
+  * Tradeston
 
-- **Character Attributes**: Players have multiple attributes:
-  - Strength
-  - Leadership
-  - Experience
-  - Money
-  - Happiness
+* **Dice-based Movement**: Roll two dice to determine your movement across the game board
+
+* **Multiple Interaction Types**:
+
+  * Make decisions that affect the community
+  * Exchange character attributes/resources
+  * Accept and complete tasks
+  * Encounter random events
+
+* **Character Attributes**: Players have multiple attributes:
+
+  * Strength
+  * Leadership
+  * Experience
+  * Money
+  * Happiness
 
 ## 💻 Technical Implementation
 
@@ -50,20 +54,23 @@ The game aims to address several UN Sustainable Development Goals:
 The game follows an object-oriented approach with these key classes:
 
 #### Core Game Classes
-- **Player**: Manages player attributes, movement, and rendering
-- **GamePanel**: Main game interface handling rendering and user interactions
-- **GameObject**: Base class for game elements with position and graphical representation
-- **Events**: Handles the various in-game events (start, fate, exchange, task)
-- **Dice**: Implements dice rolling mechanics with animation
+
+* **Player**: Manages player attributes, movement, and rendering
+* **GamePanel**: Main game interface handling rendering and user interactions
+* **GameObject**: Base class for game elements with position and graphical representation
+* **Events**: Handles the various in-game events (start, fate, exchange, task)
+* **Dice**: Implements dice rolling mechanics with animation
 
 #### UI and Threading
-- **PaintThread**: Manages continuous screen updates
-- **IconThread**: Handles icon animations, particularly for dice rolling
-- **GameUtil**: Utility functions for game resources and operations
+
+* **PaintThread**: Manages continuous screen updates
+* **IconThread**: Handles icon animations, particularly for dice rolling
+* **GameUtil**: Utility functions for game resources and operations
 
 #### Game Data Management
-- **GameData**: Stores game resources, images and game state
-- **StartGame**: Entry point for game initialization
+
+* **GameData**: Stores game resources, images and game state
+* **StartGame**: Entry point for game initialization
 
 ### Code Structure
 
@@ -88,6 +95,7 @@ src/
 ## 🚀 Core Game Functionality
 
 ### Player Movement
+
 ```java
 // Example code for player movement
 public void move(int steps) {
@@ -108,6 +116,7 @@ public void move(int steps) {
 ```
 
 ### Dice Rolling
+
 ```java
 // Example dice rolling code
 public void actionPerformed(ActionEvent ae) {
@@ -126,6 +135,7 @@ public void actionPerformed(ActionEvent ae) {
 ```
 
 ### Event Handling
+
 ```java
 // Example event handling code
 public void events(Player p) {
@@ -149,18 +159,19 @@ public void events(Player p) {
 ## 🎲 Game Board Layout
 
 The game board features various locations including:
-- Churches
-- Bus stations
-- Villages
-- Stores
-- Shelters
-- Schools
-- Refugee camps
-- Soccer fields
-- Parks
-- Community centers
-- Quiz spots
-- Fate spots
+
+* Churches
+* Bus stations
+* Villages
+* Stores
+* Shelters
+* Schools
+* Refugee camps
+* Soccer fields
+* Parks
+* Community centers
+* Quiz spots
+* Fate spots
 
 Each location offers different interactions and challenges related to sustainable development goals.
 
@@ -168,47 +179,53 @@ Each location offers different interactions and challenges related to sustainabl
 
 1. Ensure you have Java JDK 8 or higher installed
 2. Clone the repository
+
    ```
    git clone https://github.com/yourusername/sustainopoly.git
    ```
 3. Navigate to the project directory
+
    ```
    cd sustainopoly
    ```
 4. Compile the source code
+
    ```
    javac -d bin src/main/java/*.java
    ```
 5. Run the game
+
    ```
    java -cp bin StartGame
    ```
 
 ## 🔮 Future Development Plans
 
-- **Improved UI**: Players will be able to choose avatars and enter IDs
-- **Enhanced Player Attributes**: More detailed attribute system
-- **Beautified Interface**: Improved game aesthetics
-- **Increased Gameplay Options**: More player autonomy
-- **Story Enrichment**: Richer storylines with multiple endings
-- **Multiple Game Modes**: Additional play modes including:
-  - Story mode
-  - Options mode
-  - Quiz mode
-- **Accessibility Features**:
-  - Game help tutorial
-  - Voice system with text-to-speech
-  - Color blind mode
-  - Multilingual support
+* **Improved UI**: Players will be able to choose avatars and enter IDs
+* **Enhanced Player Attributes**: More detailed attribute system
+* **Beautified Interface**: Improved game aesthetics
+* **Increased Gameplay Options**: More player autonomy
+* **Story Enrichment**: Richer storylines with multiple endings
+* **Multiple Game Modes**: Additional play modes including:
+
+  * Story mode
+  * Options mode
+  * Quiz mode
+* **Accessibility Features**:
+
+  * Game help tutorial
+  * Voice system with text-to-speech
+  * Color blind mode
+  * Multilingual support
 
 ## 👥 Contributors
 
-- Hailin Weng (Team Leader): Game architecture, UML diagrams, programming, debugging
-- Yueying Xie: Game architecture, UML diagrams, programming, Gantt charts, game layout
-- Peilin Zou: Frame window creation, panel design, button implementation, threading
-- Ziwen Xu: Game rules design, area design, player class coding, team minutes
-- Yikai Wu: Dice-related functions, demo video recording
-- Yong Yang: Map design, UML class diagram, region design, use case descriptions
+* [Hailin Weng](https://github.com/Violetta0303) (Team Leader): Game architecture, UML diagrams, programming, debugging
+* [Yueying Xie](https://github.com/nancyxieyy): Game architecture, UML diagrams, programming, Gantt charts, game layout
+* [Peilin Zou](https://github.com/pzou01): Frame window creation, panel design, button implementation, threading
+* [Ziwen Xu](https://github.com/Acetean): Game rules design, area design, player class coding, team minutes
+* [Yikai Wu](https://github.com/ABRAHAMWU): Dice-related functions, demo video recording
+* [Yong Yang](https://github.com/AlexYoung77): Map design, UML class diagram, region design, use case descriptions
 
 ## 📝 License
 
